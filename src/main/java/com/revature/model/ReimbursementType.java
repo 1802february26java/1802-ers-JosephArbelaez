@@ -9,20 +9,10 @@ import java.io.Serializable;
  */
 public class ReimbursementType implements Serializable {
 	
-	/**
-	 * Compatibility with Java 1.x
-	 */
 	private static final long serialVersionUID = -6682033542018508191L;
 
-	/**
-	 * PRIMARY KEY
-	 */
-	private int id;
-	
-	/**
-	 * NOT NULL
-	 */
-	private String type;
+	private int id;		// Primary Key
+	private String type;	// Not Null
 	
 	public ReimbursementType() {}
 

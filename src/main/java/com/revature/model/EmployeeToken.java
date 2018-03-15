@@ -12,34 +12,12 @@ import java.time.LocalDateTime;
  */
 public class EmployeeToken implements Serializable {
 
-	/**
-	 * Compatibility with Java 1.x
-	 */
 	private static final long serialVersionUID = -6347088033833089677L;
 
-	/**
-	 * PRIMARY KEY
-	 */
-	private int id;
-	
-	/**
-	 * NOT NULL
-	 * Recommended to use hashing functions combining the TIMESTAMP of it was created 
-	 * with the username.
-	 */
-	private String token;
-	
-	/**
-	 * NOT NULL
-	 * It represents the TIMESTAMP of when it was created.
-	 */
-	private LocalDateTime creationDate;
-	
-	/**
-	 * NOT NULL
-	 * FOREIGN KEY coming from EMPLOYEE which represents the requester.
-	 */
-	private Employee requester;
+	private int id; 		// Primary Key
+	private String token; 	// Not Null, recommended to use hashing functions combining the timestamp of it was created
+	private LocalDateTime creationDate; // Not null, represents TIMESTAMP of when it was created.
+	private Employee requester; // Not Null, FK coming from Employee which represents the requester.
 
 	public EmployeeToken() {}
 	

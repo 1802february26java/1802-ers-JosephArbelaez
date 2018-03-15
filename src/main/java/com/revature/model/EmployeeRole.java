@@ -9,20 +9,10 @@ import java.io.Serializable;
  */
 public class EmployeeRole implements Serializable {
 
-	/**
-	 * Compatibility with Java 1.x
-	 */
 	private static final long serialVersionUID = -8261405093505107417L;
 
-	/**
-	 * PRIMARY KEY
-	 */
-	private int id;
-
-	/**
-	 * NOT NULL (You can make this UNIQUE)
-	 */
-	private String type;
+	private int id;			// Primary Key
+	private String type;	// Not null
 	
 	public EmployeeRole() {}
 	
@@ -50,8 +40,6 @@ public class EmployeeRole implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
 
 	@Override
 	public String toString() {

@@ -9,21 +9,10 @@ import java.io.Serializable;
  */
 public class ReimbursementStatus implements Serializable {
 
-	/**
-	 * Compatibility with Java 1.x
-	 */
 	private static final long serialVersionUID = 7006265099284488241L;
 
-	/**
-	 * PRIMARY KEY
-	 */
-	private int id;
-	
-	/**
-	 * NOT NULL (You can make this UNIQUE)
-	 * Initial data: PENDING, APPROVED, DECLINED.
-	 */
-	private String status;
+	private int id; // PK
+	private String status; // Not NULL, (PENDING, APPROVED, DECLINED)
 
 	public ReimbursementStatus() {}
 	

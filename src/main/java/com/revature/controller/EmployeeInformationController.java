@@ -22,7 +22,6 @@ public interface EmployeeInformationController {
 	 * registered or not.
 	 */
 	public Object registerEmployee(HttpServletRequest request);
-	
 	/**
 	 * Updates employee profile information.
 	 * 

@@ -10,46 +10,15 @@ import java.io.Serializable;
  */
 public class Employee implements Serializable, Comparable<Employee> {
 
-	/**
-	 * Compatibility with Java 1.x
-	 */
 	private static final long serialVersionUID = -6154669016957069543L;
 
-	/**
-	 * PRIMARY KEY
-	 */
 	private int id;
-
-	/**
-	 * NOT NULL
-	 */
-	private String firstName;
-	
-	/**
-	 * NOT NULL
-	 */
-	private String lastName;
-
-	/**
-	 * NOT NULL and UNIQUE
-	 */
-	private String username;
-	
-	/**
-	 * NOT NULL and HASHED
-	 */
-	private String password;
-	
-	/**
-	 * NOT NULL
-	 */
-	private String email;
-	
-	/**
-	 * NOT NULL
-	 * FOREIGN KEY coming from EMPLOYEE_ROLE
-	 */
-	private EmployeeRole employeeRole;	
+	private String firstName; 			// Not Null
+	private String lastName;  			// Not Null
+	private String username;  			// Not Null and unique
+	private String password;  			// Not null and unique
+	private String email;  				// Not null
+	private EmployeeRole employeeRole;	// Not Null, FK from Employee Role
 
 	public Employee() {}
 

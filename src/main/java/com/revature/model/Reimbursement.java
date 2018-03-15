@@ -10,68 +10,19 @@ import java.time.LocalDateTime;
  * @author Revature LLC
  */
 public class Reimbursement implements Serializable, Comparable<Reimbursement> {
-	
-	/**
-	 * Compatibility with Java 1.x
-	 */
+
 	private static final long serialVersionUID = 7817528226602188982L;
 
-	/**
-	 * PRIMARY KEY
-	 */
-	private int id;
-	
-	/**
-	 * NOT NULL
-	 */
-	private LocalDateTime requested;
-	
-	/**
-	 * No constraints, this should be NULL if it hasn't been approved yet.
-	 */
-	private LocalDateTime resolved;
-	
-	/**
-	 * NOT NULL
-	 */
-	private double amount;
-	
-	/**
-	 * No constraints.
-	 */
-	private String description;
-	
-	/**
-	 * No constraints.
-	 * This will be represented as a BLOB in the database.
-	 * Feel free to change the data type (on the Java side) at your own will.
-	 * In the end this will be transformed into a byte stream.
-	 */
-	private Object receipt;
-	
-	/**
-	 * NOT NULL
-	 * FOREIGN KEY coming from EMPLOYEE, which represents the owner of the reimbursement (requester).
-	 */
-	private Employee requester;
-	
-	/**
-	 * This should be NULL when no one has approved the request yet.
-	 * FOREIGN KEY coming from EMPLOYEE, which represents the manager which approves the reimbursement (approver).
-	 */
-	private Employee approver;
-	
-	/**
-	 * NOT NULL
-	 * FOREIGN KEY coming from REIMBURSEMENT_STATUS
-	 */
-	private ReimbursementStatus status;
-	
-	/**
-	 * NOT NULL
-	 * FOREIGN KEY coming from REIMBURSEMENT_TYPE
-	 */
-	private ReimbursementType type;
+	private int id;		// Primary Key
+	private LocalDateTime requested; // NOT NULL
+	private LocalDateTime resolved; // No constraints, this should be null if it hasn't been approved yet.
+	private double amount;	// Not null
+	private String description; // No Constraints
+	private Object receipt; // No constraints, this will be represented as a BLOB in the database.
+	private Employee requester; // Not null, FK coming from employee, which represents the requester.
+	private Employee approver;	// Null, when no one has approved the request yet. FK coming from EMPLOYEE, approver.
+	private ReimbursementStatus status; //Not null, FK coming from Reinmbursement_Status
+	private ReimbursementType type; // Not null, FK coming from Reimbursement_type
 
 	public Reimbursement() {}
 	

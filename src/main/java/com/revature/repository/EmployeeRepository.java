@@ -1,5 +1,6 @@
 package com.revature.repository;
 
+import java.sql.SQLException;
 import java.util.Set;
 
 import com.revature.model.Employee;
@@ -21,12 +22,15 @@ public interface EmployeeRepository {
 	
 	/**
 	 * Registers an employee in the database.
+	 * @throws SQLException 
 	 */
-	public boolean insert(Employee employee);
+	public boolean insert(Employee employee) throws SQLException;
 	
 	/**
 	 * Updates information for a specific employee in the database.
 	 */
+	
+	
 	public boolean update(Employee employee);
 	
 	/**
