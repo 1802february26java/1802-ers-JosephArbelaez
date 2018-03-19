@@ -1,5 +1,6 @@
 package com.revature.repository;
 
+import java.sql.SQLException;
 import java.util.Set;
 
 import com.revature.model.Reimbursement;
@@ -31,15 +32,17 @@ public interface ReimbursementRepository {
 	 * Updates a reimbursement request status in the database.
 	 * 
 	 * It returns true if the reimbursement was updated successfully.
+	 * @throws SQLException 
 	 */
-	public boolean update(Reimbursement reimbursement);
+	public boolean update(Reimbursement reimbursement) throws SQLException;
 	
 	/**
 	 * Returns a single reimbursement request.
 	 * 
 	 * A join should be performed with respective reimbursement status and type.
+	 * @throws SQLException 
 	 */
-	public Reimbursement select(int reimbursementId);
+	public Reimbursement select(int reimbursementId) throws SQLException;
 	
 	/**
 	 * Returns a set of PENDING requests of a specific employee.

@@ -64,8 +64,9 @@ public interface EmployeeRepository {
 	
 	/**
 	 * Deletes a password token from the database.
+	 * @throws SQLException 
 	 */
-	public boolean deleteEmployeeToken(EmployeeToken employeeToken);
+	public boolean deleteEmployeeToken(EmployeeToken employeeToken) throws SQLException;
 	
 	/**
 	 * Returns a specific password token.

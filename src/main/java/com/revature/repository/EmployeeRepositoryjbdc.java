@@ -4,17 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
 import com.revature.model.Employee;
+import com.revature.model.EmployeeRole;
 import com.revature.model.EmployeeToken;
 import com.revature.util.ConnectionUtil;
-
-import oracle.sql.DATE;
 
 public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
@@ -24,6 +25,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 	// Constructor
 	private EmployeeRepositoryjbdc() {}
 
+	// Make it Singleton
 	public static EmployeeRepositoryjbdc getInstance(){
 		return repository;
 	}
@@ -44,15 +46,14 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			statement.setString(++parameterIndex, employee.getEmail());
 
 			if (statement.executeUpdate() > 0) {
-				logger.info("Insert success");
+				logger.info("Insert successful!");
 				return true;
 			} else {
 				throw new SQLException();
 			}
 		} catch (SQLException e) {
-			logger.error("Exception thrown while inserting new User", e);}
+			logger.error("Exception at EmployeeRepositoryjbdc.insert", e);}
 		return false;
-
 	}
 
 	@Override
@@ -71,13 +72,13 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			statement.setString(++parameterIndex, employee.getEmail());
 
 			if (statement.executeUpdate() > 0) {
-				logger.info("Update success");
+				logger.info("Update success!");
 				return true;
 			} else {
 				throw new SQLException();
 			}
 		} catch (SQLException e) {
-			logger.error("Exception thrown while updating user", e);}
+			logger.error("Exception at EmployeeRepository.update.", e);}
 		return false;
 	}
 
@@ -87,7 +88,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		String empID = Integer.toString(employeeId);
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "SELECT * FROM USER_T WHERE U_ID =?";
+			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID WHERE U_ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, empID);
 			ResultSet result = statement.executeQuery();
@@ -99,20 +100,25 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 						result.getString("U_LASTNAME"),
 						result.getString("U_USERNAME"),
 						result.getString("U_PASSWORD"),
-						result.getString("U_EMAIL"));
+						result.getString("U_EMAIL"),
+						new EmployeeRole(
+								result.getInt("UR_ID"),
+								result.getString("UR_TYPE")
+								)
+						);
+			logger.error("Employee selection successful!");
+		} catch (SQLException e) {
+			logger.error("Exception at EmployeeRepositoryjbdc.select", e);
 		}
-	} catch (SQLException e) {
-		logger.error("Exception thrown while updating user", e);}
-
-
+		return null;
+	}
 
 	@Override
 	public Employee select(String username) {
 		logger.trace("Selecting employee.");
-
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "SELECT * FROM USER_T WHERE U_USERNAME =?";
+			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID WHERE USER_T.U_USERNAME = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, username);
 			ResultSet result = statement.executeQuery();
@@ -124,17 +130,24 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 						result.getString("U_LASTNAME"),
 						result.getString("U_USERNAME"),
 						result.getString("U_PASSWORD"),
-						result.getString("U_EMAIL"));
-
+						result.getString("U_EMAIL"),
+						new EmployeeRole(
+								result.getInt("UR_ID"),
+								result.getString("UR_TYPE")
+								)
+						);
+			logger.error("Employee selection successful!");
 		} catch (SQLException e) {
-			logger.error("Exception thrown while updating user", e);}
+			logger.error("Exception thrown while updating user", e);
+		}
+		return null;
 	}
 
 
 	@Override
 	public Set<Employee> selectAll() {
 		try(Connection connection = ConnectionUtil.getConnection()){
-			String sql = "SELECT * FROM USER_T";
+			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet result = statement.executeQuery();
 
@@ -146,19 +159,43 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 						result.getString("U_LASTNAME"),
 						result.getString("U_USERNAME"),
 						result.getString("U_PASSWORD"),
-						result.getString("U_EMAIL"));
+						result.getString("U_EMAIL"),
+						new EmployeeRole(
+								result.getInt("UR_ID"),
+								result.getString("UR_TYPE")
+								)
+						)
+						);
 			}
+			logger.error("SelectAll successful!");
+			return set;
 		}catch (SQLException e){
-
+			logger.error("Exception at EmployeeRepositoryjbdc.selectAll", e);
 		}
+		return null;
 	}
 
 	@Override
 	public String getPasswordHash(Employee employee) {
-		String password = employee.getPassword();
-		password = Integer.toString(password.hashCode());
-		
-		return password;
+		logger.trace("Gathering password.");
+		String num = Integer.toBinaryString(employee.getId());
+		String hash = "";
+		try (Connection connection = ConnectionUtil.getConnection()){
+			int parameterIndex = 0;
+			String sql = "SELECT U_PASSWORD FROM USER_T WHERE U_ID = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(++parameterIndex, num);
+
+			ResultSet result = statement.executeQuery();
+			while(result.next()){
+				hash = result.getString("U_PASSWORD");
+			}
+			logger.info("Insert successful!");
+			return hash;
+		} catch (SQLException e) {
+			logger.error("Exception at EmployeeRepositoryjdbc.getPasswordHash", e);
+		}
+		return hash;
 	}
 
 	@Override
@@ -167,44 +204,77 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-DD HH:mm");
 			LocalDateTime dateTime = employeeToken.getCreationDate();
-			String formattedDateTime = dateTime.format(formatter);
-			
+
 			String sql = "INSERT INTO PASSWORD_RECOVERY(PR_ID, PR_TOKEN, PR_TIME, U_ID) VALUES (?,?,?,?)";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, Integer.toString(employeeToken.getId()));
 			statement.setString(++parameterIndex, employeeToken.getToken());
-			statement.setString(++parameterIndex, formattedDateTime);
+			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(employeeToken.getCreationDate()));
 			statement.setString(++parameterIndex, Integer.toString(employeeToken.getRequester().getId()));
 
 			if (statement.executeUpdate() > 0) {
+				logger.error("EmployeeToken insert successful!");
 				return true;
 			} else {
 				throw new SQLException();
 			}
 		} catch (SQLException e) {
-			logger.error("Exception thrown while inserting new User", e);}
+			logger.error("Exception at EmployeeRepositoryjdbc.inserEmployeeToken", e);}
 		return false;
 	}
 
 	@Override
-	public boolean deleteEmployeeToken(EmployeeToken employeeToken) {
+	public boolean deleteEmployeeToken(EmployeeToken employeeToken) throws SQLException {
 		try(Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
 			String sql ="DELETE FROM PASSWORD_RECOVERY WHERE PR_ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
-			
+
 			statement.setString(++parameterIndex, Integer.toString(employeeToken.getId()));
+			statement.executeUpdate();
+			logger.error("Delete successful!");
+			return true;
+		} catch (SQLException e){
+			logger.error("Exception at EmployeeRepository.deleteEmployeeToken");
+			return false;
 		}
-		return false;
 	}
 
 	@Override
 	public EmployeeToken selectEmployeeToken(EmployeeToken employeeToken) {
-		// TODO Auto-generated method stub
+		try(Connection connection = ConnectionUtil.getConnection()){
+			int parameterIndex = 0;
+
+			String sql ="SELECT FROM PASSWORD_RECOVERY WHERE PR_ID = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+
+			statement.setString(++parameterIndex, Integer.toString(employeeToken.getId()));
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				return new EmployeeToken(
+						result.getInt("PR_ID"),
+						result.getString("PR_TOKEN"),
+						result.getTimestamp("PR_TIME").toLocalDateTime(),
+						new Employee(
+								result.getInt("U_ID"),
+								result.getString("U_FIRSTNAME"),
+								result.getString("U_LASTNAME"),
+								result.getString("U_USERNAME"),
+								result.getString("U_PASSWORD"),
+								result.getString("U_EMAIL"),
+								new EmployeeRole(
+										result.getInt("UR_ID"),
+										result.getString("UR_TYPE")
+										)
+								)
+						);
+			}
+			logger.error("Employee token return successful.");
+		} catch (SQLException e){
+			logger.error("Exception at EmployeeRepositoryjbdc.selectEmployeeToken", e);
+		}
 		return null;
 	}
-
 }
