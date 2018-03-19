@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -21,12 +22,12 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 	public static ReimbursementServiceAlpha getInstance(){
 		return service;
 	}
-	
+
 	@Override
 	public boolean submitRequest(Reimbursement reimbursement) {
 		if (reimbursement.getRequested() == null || reimbursement.getAmount() == 0 || reimbursement.getRequester() == null || reimbursement.getStatus() == null|| reimbursement.getType() == null) {
-				repository.insert(reimbursement);
-				return true;
+			repository.insert(reimbursement);
+			return true;
 		}
 		return false;
 	}
@@ -44,7 +45,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 
 	@Override
 	public Reimbursement getSingleRequest(Reimbursement reimbursement) {
-		if (reimbursement.getId() == 0){
+		if (reimbursement.getId() != 0){
 			try{
 				repository.select(reimbursement.getId());
 				logger.info("Select completed!");
@@ -57,7 +58,17 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 
 	@Override
 	public Set<Reimbursement> getUserPendingRequests(Employee employee) {
-		// TODO Auto-generated method stub
+		if (employee.getId() != 0){
+			Set<Reimbursement> set = new HashSet<Reimbursement>();
+			set = repository.selectPending(employee.getId());
+			if (set.size() < 1){	
+				logger.info("Successfully gathered User pending requests.");
+				return set;
+			} 
+			logger.error("Issue selecting a user's pending requests.  ReimbursementServiceAlpha.getUserPendingRequests.");
+			return null;
+		}
+		logger.error("Employee must have an ID.");
 		return null;
 	}
 
