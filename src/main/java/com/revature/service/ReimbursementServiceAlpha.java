@@ -74,7 +74,17 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 
 	@Override
 	public Set<Reimbursement> getUserFinalizedRequests(Employee employee) {
-		// TODO Auto-generated method stub
+		if (employee.getId() != 0){
+			Set<Reimbursement> set = new HashSet<Reimbursement>();
+			set = repository.selectFinalized(employee.getId());
+			if (set.size() < 1){	
+				logger.info("Successfully gathered User finalized requests.");
+				return set;
+			} 
+			logger.error("Issue selecting a user's finalized requests.  ReimbursementServiceAlpha.getUserFinalizedRequests.");
+			return null;
+		}
+		logger.error("Employee must have an ID.");
 		return null;
 	}
 
