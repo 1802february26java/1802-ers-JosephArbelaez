@@ -61,7 +61,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 		if (employee.getId() != 0){
 			Set<Reimbursement> set = new HashSet<Reimbursement>();
 			set = repository.selectPending(employee.getId());
-			if (set.size() < 1){	
+			if (set.size() > 0){	
 				logger.info("Successfully gathered User pending requests.");
 				return set;
 			} 
@@ -77,7 +77,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 		if (employee.getId() != 0){
 			Set<Reimbursement> set = new HashSet<Reimbursement>();
 			set = repository.selectFinalized(employee.getId());
-			if (set.size() < 1){	
+			if (set.size() > 0){	
 				logger.info("Successfully gathered User finalized requests.");
 				return set;
 			} 
@@ -91,24 +91,36 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 	@Override
 	public Set<Reimbursement> getAllPendingRequests() {
 		Set<Reimbursement> set = new HashSet<Reimbursement>();
-		set = repository.selectAllFinalized();
-		if (set.size() < 1){	
-			logger.info("Successfully gathered User finalized requests.");
+		set = repository.selectAllPending();
+		if (set.size() > 0){	
+			logger.info("Successfully gathered all pending requests.");
 			return set;
 		} 
-		logger.error("Issue selecting a user's finalized requests.  ReimbursementServiceAlpha.getUserFinalizedRequests.");
+		logger.error("Issue selecting all pending requests.  ReimbursementServiceAlpha.getAllPendingRequests.");
 		return null;
 	}
 
 	@Override
 	public Set<Reimbursement> getAllResolvedRequests() {
-		// TODO Auto-generated method stub
+		Set<Reimbursement> set = new HashSet<Reimbursement>();
+		set = repository.selectAllFinalized();
+		if (set.size() > 0){	
+			logger.info("Successfully gathered all resolved requests.");
+			return set;
+		} 
+		logger.error("Issue selecting all finalized requests.  ReimbursementServiceAlpha.getAllResolvedRequests.");
 		return null;
 	}
 
 	@Override
 	public Set<ReimbursementType> getReimbursementTypes() {
-		// TODO Auto-generated method stub
+		Set<ReimbursementType> set = new HashSet<ReimbursementType>();
+		set = repository.selectTypes();
+		if (set.size() > 0){	
+			logger.info("Successfully gathered all Types.");
+			return set;
+		} 
+		logger.error("Issue selecting all ReimbursementTypes.  ReimbursementServiceAlpha.getAllTypes");
 		return null;
 	}
 
