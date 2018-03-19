@@ -97,8 +97,13 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public boolean updatePassword(Employee employee) {
-		// TODO Auto-generated method stub
-		return false;
+		if (repository.update(employee)){
+			logger.info("Employee Updated!");
+			return true;
+		} else {
+			logger.error("Employee update failed. =(");
+			return false;
+		}
 	}
 
 	@Override
