@@ -234,9 +234,13 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			PreparedStatement statement = connection.prepareStatement(sql);
 
 			statement.setString(++parameterIndex, Integer.toString(employeeToken.getId()));
-			statement.executeUpdate();
-			logger.error("Delete successful!");
-			return true;
+			if (statement.executeUpdate() > 0){
+				logger.info("Delete successful!");
+				return true;
+			} else {
+				throw new SQLException("There weren't any tokens within the database with those parameters.");
+			}
+			
 		} catch (SQLException e){
 			logger.error("Exception at EmployeeRepository.deleteEmployeeToken");
 			return false;

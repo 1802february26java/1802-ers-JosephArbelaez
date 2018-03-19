@@ -1,13 +1,17 @@
 package com.revature.service;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.Set;
+
 import org.apache.log4j.Logger;
 
-import com.revature.exception.InputException;
 import com.revature.model.Employee;
 import com.revature.model.EmployeeToken;
 import com.revature.repository.EmployeeRepositoryjbdc;
+
 
 public class EmployeeServiceAlpha implements EmployeeService {
 
@@ -75,14 +79,20 @@ public class EmployeeServiceAlpha implements EmployeeService {
 				logger.error("You must enter a password.");
 			} 
 		} 
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean updateEmployeeInformation(Employee employee) {
-		// TODO Auto-generated method stub
-		return false;
+		if (repository.update(employee)){
+			logger.info("Employee Updated!");
+			return true;
+		} else {
+			logger.error("Employee update failed. =(");
+			return false;
+		}
+		
 	}
 
 	@Override
@@ -97,26 +107,56 @@ public class EmployeeServiceAlpha implements EmployeeService {
 			logger.info("Username has not been taken");
 			return true;
 		}
-			logger.info("Username already exists within the database.");
-			return false;
+		logger.info("Username already exists within the database.");
+		return false;
 	}
 
 	@Override
 	public boolean createPasswordToken(Employee employee) {
-		// TODO Auto-generated method stub
+		LocalDateTime now = LocalDateTime.now();
+		String hash = now.toString();
+		hash = hash + employee.getUsername();
+		hash = Integer.toString(hash.hashCode());
+
+		if (employee.getId() > 0) {
+			// If there is an employeeID, create a new PasswordToken
+			EmployeeToken et = new EmployeeToken(0, hash, now, employee);
+			repository.insertEmployeeToken(et);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deletePasswordToken(EmployeeToken employeeToken) {
-		// TODO Auto-generated method stub
+		try {
+			repository.deleteEmployeeToken(employeeToken);
+		} catch (SQLException e) {
+			logger.info("Token does not exist within the database.");
+		}
 		return false;
 	}
 
 	@Override
 	public boolean isTokenExpired(EmployeeToken employeeToken) {
-		// TODO Auto-generated method stub
+
+		EmployeeToken et = repository.selectEmployeeToken(employeeToken);
+		if (et == null){
+			logger.trace("Token does not exist within the database.");
+		}
+
+		LocalDateTime tokenDate = et.getCreationDate();
+		LocalDateTime now = LocalDateTime.now();
+
+		long days = ChronoUnit.DAYS.between(tokenDate, now);
+		if (days >= 7){
+			try {
+				repository.deleteEmployeeToken(employeeToken);
+			} catch (SQLException e) {
+				logger.error("Error deleting token.");
+			}
+			return true;
+		}
 		return false;
 	}
-
 }
