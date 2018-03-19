@@ -52,7 +52,8 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 				throw new SQLException();
 			}
 		} catch (SQLException e) {
-			logger.error("Exception at EmployeeRepositoryjbdc.insert", e);}
+			logger.error("Exception at EmployeeRepositoryjbdc.insert", e);
+			}
 		return false;
 	}
 
@@ -190,7 +191,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			while(result.next()){
 				hash = result.getString("U_PASSWORD");
 			}
-			logger.info("Insert successful!");
+			logger.info("Password hash acquired!");
 			return hash;
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepositoryjdbc.getPasswordHash", e);
