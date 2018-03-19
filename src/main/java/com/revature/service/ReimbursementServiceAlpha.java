@@ -44,7 +44,14 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 
 	@Override
 	public Reimbursement getSingleRequest(Reimbursement reimbursement) {
-		// TODO Auto-generated method stub
+		if (reimbursement.getId() == 0){
+			try{
+				repository.select(reimbursement.getId());
+				logger.info("Select completed!");
+			} catch (SQLException e) {
+				logger.error("Issue selecting a single request ReimbursementServiceAlpha.getSingleRequest");
+			}
+		}
 		return null;
 	}
 
