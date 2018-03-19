@@ -3,7 +3,6 @@ package com.revature.service;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -153,6 +152,8 @@ public class EmployeeServiceAlpha implements EmployeeService {
 		LocalDateTime tokenDate = et.getCreationDate();
 		LocalDateTime now = LocalDateTime.now();
 
+		// I only want the token to last for seven days. If it's more it gets deleted
+		// if it's less than 7 days it gets to be used.
 		long days = ChronoUnit.DAYS.between(tokenDate, now);
 		if (days >= 7){
 			try {
