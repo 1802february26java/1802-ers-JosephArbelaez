@@ -93,8 +93,12 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public boolean isUsernameTaken(Employee employee) {
-		// TODO Auto-generated method stub
-		return false;
+		if ( repository.select(employee.getUsername()) == null) {
+			logger.info("Username has not been taken");
+			return true;
+		}
+			logger.info("Username already exists within the database.");
+			return false;
 	}
 
 	@Override
