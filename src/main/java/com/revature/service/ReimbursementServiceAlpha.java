@@ -90,7 +90,13 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 
 	@Override
 	public Set<Reimbursement> getAllPendingRequests() {
-		// TODO Auto-generated method stub
+		Set<Reimbursement> set = new HashSet<Reimbursement>();
+		set = repository.selectAllFinalized();
+		if (set.size() < 1){	
+			logger.info("Successfully gathered User finalized requests.");
+			return set;
+		} 
+		logger.error("Issue selecting a user's finalized requests.  ReimbursementServiceAlpha.getUserFinalizedRequests.");
 		return null;
 	}
 
