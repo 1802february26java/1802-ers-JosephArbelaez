@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import com.revature.model.Employee;
 import com.revature.model.EmployeeRole;
 import com.revature.model.EmployeeToken;
+import com.revature.service.EmployeeServiceAlpha;
 import com.revature.util.ConnectionUtil;
 
 public class EmployeeRepositoryjbdc implements EmployeeRepository{
@@ -36,7 +37,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "INSERT INTO USER_T(U_FIRSTNAME, U_LASTNAME, U_USERNAME, U_PASSWORD, U_EMAIL) VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO USER_T VALUES (null,?,?,?,?,?,?)";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, employee.getFirstName());
@@ -44,12 +45,10 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			statement.setString(++parameterIndex, employee.getUsername());
 			statement.setString(++parameterIndex, employee.getPassword());
 			statement.setString(++parameterIndex, employee.getEmail());
-
+			statement.setInt(++parameterIndex, employee.getEmployeeRole().getId());
 			if (statement.executeUpdate() > 0) {
 				logger.info("Insert successful!");
 				return true;
-			} else {
-				throw new SQLException();
 			}
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepositoryjbdc.insert", e);
@@ -63,20 +62,18 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "UPDATE USER_T SET(U_FIRSTNAME = ?, U_LASTNAME = ?, U_USERNAME = ?, U_PASSWORD = ? , U_EMAIL =?) WHERE U_ID =?";
+			String sql = "UPDATE USER_T SET U_FIRSTNAME = ?, U_LASTNAME = ?, U_PASSWORD = ? , U_EMAIL =? WHERE U_ID =?";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, employee.getFirstName());
 			statement.setString(++parameterIndex, employee.getLastName());
-			statement.setString(++parameterIndex, employee.getUsername());
 			statement.setString(++parameterIndex, employee.getPassword());
 			statement.setString(++parameterIndex, employee.getEmail());
-
-			if (statement.executeUpdate() > 0) {
+			statement.setInt(++parameterIndex, employee.getId());
+			int num = statement.executeUpdate();
+			if ( num > 0) {
 				logger.info("Update success!");
 				return true;
-			} else {
-				throw new SQLException();
 			}
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepository.update.", e);}
@@ -89,7 +86,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		String empID = Integer.toString(employeeId);
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID WHERE U_ID = ?";
+			String sql = "SELECT * FROM USER_T,USER_ROLE WHERE U_ID = ? AND USER_T.UR_ID = USER_ROLE.UR_ID";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, empID);
 			ResultSet result = statement.executeQuery();
@@ -119,12 +116,12 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		logger.trace("Selecting employee.");
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID WHERE USER_T.U_USERNAME = ?";
+			String sql = "SELECT * FROM USER_T,USER_ROLE WHERE U_USERNAME = ? AND USER_T.UR_ID = USER_ROLE.UR_ID";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, username);
 			ResultSet result = statement.executeQuery();
 
-			if(result.next())
+			if(result.next()) {
 				return new Employee(
 						result.getInt("U_ID"),
 						result.getString("U_FIRSTNAME"),
@@ -137,11 +134,12 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 								result.getString("UR_TYPE")
 								)
 						);
-			logger.error("Employee selection successful!");
+			}
+			logger.trace("Employee selection successful!");
 		} catch (SQLException e) {
-			logger.error("Exception thrown while updating user", e);
+			logger.error("Exception thrown while selecting employee by username", e);
 		}
-		return null;
+		return new Employee();
 	}
 
 
@@ -179,24 +177,21 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 	@Override
 	public String getPasswordHash(Employee employee) {
 		logger.trace("Gathering password.");
-		String num = Integer.toBinaryString(employee.getId());
-		String hash = "";
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "SELECT U_PASSWORD FROM USER_T WHERE U_ID = ?";
+			String sql = "SELECT GET_HASH(?) AS HASH FROM DUAL";
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(++parameterIndex, num);
+			statement.setString(++parameterIndex, employee.getPassword());
 
 			ResultSet result = statement.executeQuery();
-			while(result.next()){
-				hash = result.getString("U_PASSWORD");
+			if(result.next()){
+				return result.getString("HASH");
 			}
 			logger.info("Password hash acquired!");
-			return hash;
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepositoryjdbc.getPasswordHash", e);
 		}
-		return hash;
+		return new String();
 	}
 
 	@Override
@@ -282,4 +277,13 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		}
 		return null;
 	}
+	
+public static void main(String[] args) {
+	EmployeeRepositoryjbdc er = new EmployeeRepositoryjbdc();
+	Employee emp = new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
+	int num =43;
+	//System.out.println(er.getInstance().select(num));
+	Set<Employee> s = er.selectAll();
+	System.out.println(s);
+}
 }

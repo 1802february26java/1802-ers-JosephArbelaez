@@ -1,1 +1,156 @@
 2018-03-13 13:38:15 INFO  ConnectionUtil:26 - Connection Successful!
+2018-03-24 16:33:00 TRACE ConnectionUtil:34 - We are good.
+2018-03-24 16:33:09 TRACE ConnectionUtil:34 - We are good.
+2018-03-24 19:26:59 TRACE ConnectionUtil:24 - Connection Successful
+2018-03-24 19:49:30 TRACE EmployeeRepositoryjbdc:119 - Selecting employee.
+2018-03-24 19:49:32 TRACE EmployeeRepositoryjbdc:181 - Gathering password.
+2018-03-24 19:49:32 INFO  EmployeeRepositoryjbdc:194 - Password hash acquired!
+2018-03-24 19:49:32 INFO  EmployeeServiceAlpha:33 - Employee authentication failed. EmployeeServiceAlpha.authenticate.
+2018-03-24 19:51:30 TRACE EmployeeRepositoryjbdc:119 - Selecting employee.
+2018-03-24 19:51:31 TRACE EmployeeRepositoryjbdc:181 - Gathering password.
+2018-03-24 19:51:32 INFO  EmployeeRepositoryjbdc:194 - Password hash acquired!
+2018-03-24 19:51:32 INFO  EmployeeServiceAlpha:33 - Employee authentication failed. EmployeeServiceAlpha.authenticate.
+2018-03-24 20:33:54 TRACE EmployeeRepositoryjbdc:119 - Selecting employee.
+2018-03-24 20:33:56 ERROR EmployeeRepositoryjbdc:142 - Exception thrown while updating user
+java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:776)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:897)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1034)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3867)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1502)
+	at com.revature.repository.EmployeeRepositoryjbdc.select(EmployeeRepositoryjbdc.java:125)
+	at com.revature.service.EmployeeServiceAlpha.authenticate(EmployeeServiceAlpha.java:28)
+	at com.revature.service.EmployeeServiceAlpha.main(EmployeeServiceAlpha.java:173)
+2018-03-24 20:34:37 TRACE EmployeeRepositoryjbdc:119 - Selecting employee.
+2018-03-24 20:34:38 ERROR EmployeeRepositoryjbdc:142 - Exception thrown while updating user
+java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:776)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:897)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1034)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3867)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1502)
+	at com.revature.repository.EmployeeRepositoryjbdc.select(EmployeeRepositoryjbdc.java:125)
+	at com.revature.service.EmployeeServiceAlpha.authenticate(EmployeeServiceAlpha.java:28)
+	at com.revature.service.EmployeeServiceAlpha.main(EmployeeServiceAlpha.java:173)
+2018-03-25 00:33:05 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:33:06 ERROR EmployeeRepositoryjbdc:143 - Exception thrown while updating user
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getString(GeneratedResultSet.java:1460)
+	at com.revature.repository.EmployeeRepositoryjbdc.select(EmployeeRepositoryjbdc.java:138)
+	at com.revature.service.EmployeeServiceAlpha.authenticate(EmployeeServiceAlpha.java:29)
+	at com.revature.service.EmployeeServiceAlpha.main(EmployeeServiceAlpha.java:172)
+2018-03-25 00:34:49 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:34:50 TRACE EmployeeRepositoryjbdc:182 - Gathering password.
+2018-03-25 00:34:50 INFO  EmployeeRepositoryjbdc:195 - Password hash acquired!
+2018-03-25 00:34:50 INFO  EmployeeServiceAlpha:34 - Employee authentication failed. EmployeeServiceAlpha.authenticate.
+2018-03-25 00:36:33 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:36:34 TRACE EmployeeRepositoryjbdc:182 - Gathering password.
+2018-03-25 00:36:34 INFO  EmployeeRepositoryjbdc:195 - Password hash acquired!
+2018-03-25 00:36:34 INFO  EmployeeServiceAlpha:34 - Employee authentication failed. EmployeeServiceAlpha.authenticate.
+2018-03-25 00:36:56 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:36:57 TRACE EmployeeRepositoryjbdc:182 - Gathering password.
+2018-03-25 00:36:57 INFO  EmployeeRepositoryjbdc:195 - Password hash acquired!
+2018-03-25 00:36:57 INFO  EmployeeServiceAlpha:34 - Employee authentication failed. EmployeeServiceAlpha.authenticate.
+2018-03-25 00:43:19 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:43:20 ERROR EmployeeRepositoryjbdc:141 - Employee selection successful!
+2018-03-25 00:44:15 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:44:16 ERROR EmployeeRepositoryjbdc:141 - Employee selection successful!
+2018-03-25 00:47:17 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:47:18 TRACE EmployeeRepositoryjbdc:141 - Employee selection successful!
+2018-03-25 00:47:18 TRACE EmployeeRepositoryjbdc:182 - Gathering password.
+2018-03-25 00:47:18 INFO  EmployeeRepositoryjbdc:195 - Password hash acquired!
+2018-03-25 00:50:41 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:50:42 TRACE EmployeeRepositoryjbdc:142 - Employee selection successful!
+2018-03-25 00:50:42 TRACE EmployeeRepositoryjbdc:183 - Gathering password.
+2018-03-25 00:50:42 INFO  EmployeeRepositoryjbdc:196 - Password hash acquired!
+2018-03-25 00:54:26 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:54:27 TRACE EmployeeRepositoryjbdc:142 - Employee selection successful!
+2018-03-25 00:54:27 TRACE EmployeeRepositoryjbdc:183 - Gathering password.
+2018-03-25 00:54:55 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 00:54:56 TRACE EmployeeRepositoryjbdc:142 - Employee selection successful!
+2018-03-25 00:54:56 TRACE EmployeeRepositoryjbdc:183 - Gathering password.
+2018-03-25 01:00:56 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 01:00:57 TRACE EmployeeRepositoryjbdc:183 - Gathering password.
+2018-03-25 01:00:58 INFO  EmployeeServiceAlpha:31 - Employee authenticated.
+2018-03-25 01:01:51 TRACE EmployeeRepositoryjbdc:120 - Selecting employee.
+2018-03-25 01:01:52 TRACE EmployeeRepositoryjbdc:183 - Gathering password.
+2018-03-25 01:01:53 INFO  EmployeeServiceAlpha:31 - Employee authenticated.
+2018-03-25 01:08:12 TRACE EmployeeRepositoryjbdc:118 - Selecting employee.
+2018-03-25 01:08:13 TRACE EmployeeRepositoryjbdc:181 - Gathering password.
+2018-03-25 01:08:13 INFO  EmployeeServiceAlpha:31 - Employee authenticated.
+2018-03-25 01:08:22 TRACE EmployeeRepositoryjbdc:36 - Inserting new employee.
+2018-03-25 01:08:23 ERROR EmployeeRepositoryjbdc:54 - Exception at EmployeeRepositoryjbdc.insert
+java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("REIMBURSEMENT_DB"."USER_T"."UR_ID")
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.revature.repository.EmployeeRepositoryjbdc.insert(EmployeeRepositoryjbdc.java:49)
+	at com.revature.repository.EmployeeRepositoryjbdc.main(EmployeeRepositoryjbdc.java:287)
+2018-03-25 01:10:43 TRACE EmployeeRepositoryjbdc:36 - Inserting new employee.
+2018-03-25 01:10:44 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 01:36:11 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:36:12 ERROR EmployeeRepositoryjbdc:81 - Exception at EmployeeRepository.update.
+java.sql.SQLException: Missing IN or OUT parameter at index:: 6
+	at oracle.jdbc.driver.OraclePreparedStatement.processCompletedBindRow(OraclePreparedStatement.java:1878)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3815)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.revature.repository.EmployeeRepositoryjbdc.update(EmployeeRepositoryjbdc.java:74)
+	at com.revature.repository.EmployeeRepositoryjbdc.main(EmployeeRepositoryjbdc.java:286)
+2018-03-25 01:39:20 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:39:21 ERROR EmployeeRepositoryjbdc:81 - Exception at EmployeeRepository.update.
+java.sql.SQLException: Missing IN or OUT parameter at index:: 7
+	at oracle.jdbc.driver.OraclePreparedStatement.processCompletedBindRow(OraclePreparedStatement.java:1878)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3815)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.revature.repository.EmployeeRepositoryjbdc.update(EmployeeRepositoryjbdc.java:74)
+	at com.revature.repository.EmployeeRepositoryjbdc.main(EmployeeRepositoryjbdc.java:286)
+2018-03-25 01:42:23 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:43:41 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:44:17 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:46:01 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:47:06 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:48:00 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:48:01 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 01:49:15 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:49:16 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 01:51:27 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 01:51:28 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 02:01:47 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 02:01:49 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 02:02:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 02:04:54 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!

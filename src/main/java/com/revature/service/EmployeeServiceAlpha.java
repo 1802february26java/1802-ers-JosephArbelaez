@@ -8,6 +8,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import com.revature.model.Employee;
+import com.revature.model.EmployeeRole;
 import com.revature.model.EmployeeToken;
 import com.revature.repository.EmployeeRepositoryjbdc;
 
@@ -25,10 +26,11 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public Employee authenticate(Employee employee) {
-		Employee selectedEmployee = repository.select(employee.getUsername());
-		if (selectedEmployee.getPassword().equals(repository.getPasswordHash(employee))) {
+		Employee loggedEmployee = repository.getInstance().select(employee.getUsername());
+		 if(loggedEmployee.getPassword().equals(EmployeeRepositoryjbdc.getInstance().getPasswordHash(employee))) {
 			logger.info("Employee authenticated.");
-			return selectedEmployee;
+			//System.out.println(loggedEmployee);
+			return loggedEmployee;
 		}
 		logger.info("Employee authentication failed. EmployeeServiceAlpha.authenticate.");
 		return null;
@@ -164,5 +166,10 @@ public class EmployeeServiceAlpha implements EmployeeService {
 			return true;
 		}
 		return false;
+	}
+	public static void main(String[] args) {
+		Employee emp = new Employee(1, "anthony", "pena", "antman", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
+		EmployeeServiceAlpha esa = new EmployeeServiceAlpha();
+		esa.getInstance().authenticate(emp);
 	}
 }
