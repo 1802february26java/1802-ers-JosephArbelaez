@@ -109,7 +109,10 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public boolean isUsernameTaken(Employee employee) {
-		if ( repository.select(employee.getUsername()) == null) {
+		
+		Employee emp1 = repository.select(employee.getUsername());
+		Employee empNull = new Employee(0, null, null, null, null, null);
+		if ( emp1.equals(empNull)) {
 			logger.info("Username has not been taken");
 			return true;
 		}
@@ -168,8 +171,42 @@ public class EmployeeServiceAlpha implements EmployeeService {
 		return false;
 	}
 	public static void main(String[] args) {
-		Employee emp = new Employee(1, "anthony", "pena", "antman", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
+		Employee emp = new Employee(41, "anthony", "pena", "dschultz", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
+		Employee emp2 = new Employee(61, "david", "spektz", "dspektz", "2", "dspektz@gmail.com",new EmployeeRole(2,"MANAGER"));
+		Employee emp3 = new Employee(0, "walker", "lavadera", "dungeonmaster", "1", "walker@gmail.com",new EmployeeRole(2,"MANAGER"));
+		EmployeeToken et = new EmployeeToken(22, null, null, emp2);
 		EmployeeServiceAlpha esa = new EmployeeServiceAlpha();
-		esa.getInstance().authenticate(emp);
+		
+		// Authenticate Test
+		//esa.getInstance().authenticate(emp);
+		
+		// getEmployeeInformation TEST
+		//System.out.println(esa.getInstance().getEmployeeInformation(emp));
+		
+		// getAllEmployeeInformation
+		//System.out.println(esa.getInstance().getAllEmployeesInformation());
+		//System.out.println(esa.getInstance().getAllEmployeesInformation().size());
+		
+		//create Employee
+		//esa.getInstance().createEmployee(emp2);
+		
+		//update Employee
+		//System.out.println(esa.getInstance().updateEmployeeInformation(emp2));
+		
+		// Update Password
+		//System.out.println(esa.getInstance().updatePassword(emp));
+		
+		// Is username taken?
+		//System.out.println(esa.getInstance().isUsernameTaken(emp3));
+		
+		// Create Password Token
+		//System.out.println(esa.getInstance().createPasswordToken(emp2));
+		
+		// Delete Password Token
+		//System.out.println(esa.getInstance().deletePasswordToken(et));
+		
+		
+		// Is token expired?
+		//System.out.println(esa.getInstance().isTokenExpired(et));
 	}
 }

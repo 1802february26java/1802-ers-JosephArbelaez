@@ -52,7 +52,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			}
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepositoryjbdc.insert", e);
-			}
+		}
 		return false;
 	}
 
@@ -67,7 +67,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, employee.getFirstName());
 			statement.setString(++parameterIndex, employee.getLastName());
-			statement.setString(++parameterIndex, employee.getPassword());
+			statement.setString(++parameterIndex, getPasswordHash(employee));
 			statement.setString(++parameterIndex, employee.getEmail());
 			statement.setInt(++parameterIndex, employee.getId());
 			int num = statement.executeUpdate();
@@ -196,25 +196,23 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
 	@Override
 	public boolean insertEmployeeToken(EmployeeToken employeeToken) {
-		logger.trace("Inserting new employee.");
+		logger.trace("Inserting new employee token.");
 
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
 			LocalDateTime dateTime = employeeToken.getCreationDate();
 
-			String sql = "INSERT INTO PASSWORD_RECOVERY(PR_ID, PR_TOKEN, PR_TIME, U_ID) VALUES (?,?,?,?)";
+			// The first null is for the primary key, it has a trigger.
+			// The second null is for the token hash that is generated from the current timestamp.
+			String sql = "INSERT INTO PASSWORD_RECOVERY(PR_ID, PR_TOKEN, PR_TIME, U_ID) VALUES (NULL, NULL,?,?)";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(++parameterIndex, Integer.toString(employeeToken.getId()));
-			statement.setString(++parameterIndex, employeeToken.getToken());
 			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(employeeToken.getCreationDate()));
-			statement.setString(++parameterIndex, Integer.toString(employeeToken.getRequester().getId()));
+			statement.setInt(++parameterIndex, employeeToken.getRequester().getId());
 
 			if (statement.executeUpdate() > 0) {
 				logger.error("EmployeeToken insert successful!");
 				return true;
-			} else {
-				throw new SQLException();
 			}
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepositoryjdbc.inserEmployeeToken", e);}
@@ -235,7 +233,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			} else {
 				throw new SQLException("There weren't any tokens within the database with those parameters.");
 			}
-			
+
 		} catch (SQLException e){
 			logger.error("Exception at EmployeeRepository.deleteEmployeeToken");
 			return false;
@@ -244,14 +242,16 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
 	@Override
 	public EmployeeToken selectEmployeeToken(EmployeeToken employeeToken) {
+		logger.trace("Selecting employee token");
 		try(Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
 
-			String sql ="SELECT FROM PASSWORD_RECOVERY WHERE PR_ID = ?";
+			String sql ="SELECT USER_T.U_ID, USER_T.U_FIRSTNAME, USER_T.U_LASTNAME, USER_T.U_USERNAME, USER_T.U_PASSWORD, USER_T.U_EMAIL, USER_T.UR_ID, PASSWORD_RECOVERY.PR_ID, PASSWORD_RECOVERY.PR_TOKEN, PASSWORD_RECOVERY.PR_TIME, PASSWORD_RECOVERY.U_ID FROM USER_T INNER JOIN PASSWORD_RECOVERY ON USER_T.U_ID = PASSWORD_RECOVERY.U_ID WHERE PR_ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 
-			statement.setString(++parameterIndex, Integer.toString(employeeToken.getId()));
+			statement.setInt(++parameterIndex, employeeToken.getId());
 			ResultSet result = statement.executeQuery();
+			logger.trace("SQL Executed correctly.");
 			if (result.next()) {
 				return new EmployeeToken(
 						result.getInt("PR_ID"),
@@ -263,27 +263,37 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 								result.getString("U_LASTNAME"),
 								result.getString("U_USERNAME"),
 								result.getString("U_PASSWORD"),
-								result.getString("U_EMAIL"),
-								new EmployeeRole(
-										result.getInt("UR_ID"),
-										result.getString("UR_TYPE")
-										)
+								result.getString("U_EMAIL")
 								)
 						);
 			}
-			logger.error("Employee token return successful.");
+			logger.trace("Employee token returned successfully.");
 		} catch (SQLException e){
 			logger.error("Exception at EmployeeRepositoryjbdc.selectEmployeeToken", e);
 		}
 		return null;
 	}
-	
-public static void main(String[] args) {
-	EmployeeRepositoryjbdc er = new EmployeeRepositoryjbdc();
-	Employee emp = new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
-	int num =43;
-	//System.out.println(er.getInstance().select(num));
-	Set<Employee> s = er.selectAll();
-	System.out.println(s);
-}
+
+	public static void main(String[] args) {
+		EmployeeRepositoryjbdc er = new EmployeeRepositoryjbdc();
+		Employee emp = new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
+		int num =43;
+		//System.out.println(er.getInstance().select(num));
+		//Set<Employee> s = er.selectAll();
+		//System.out.println(s);
+
+		//Insert Employee Token Testing
+		//er.getInstance().insertEmployeeToken(new EmployeeToken(1, "I Love Anthony", LocalDateTime.now(), new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"))));
+
+		// Select Employee Token TEST
+		//System.out.println(er.getInstance().selectEmployeeToken(new EmployeeToken(1, "I Love Anthony", LocalDateTime.now(), new Employee(41, "anthony", "pena", "antman", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER")))));
+
+		// Delete Employee Token Test
+//		/try {
+//			er.getInstance().deleteEmployeeToken(new EmployeeToken(1, "I Love Anthony", LocalDateTime.now(), new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"))));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
 }

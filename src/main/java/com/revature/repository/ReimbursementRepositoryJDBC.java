@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.revature.model.Employee;
+import com.revature.model.EmployeeRole;
 import com.revature.model.Reimbursement;
 import com.revature.model.ReimbursementStatus;
 import com.revature.model.ReimbursementType;
@@ -33,12 +36,13 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "INSERT INTO REIMBURSEMENT(R_REQUESTED, R_AMOUNT, R_DESCRIPTION, EMPLOYEE_ID, RS_ID, RT_ID) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO REIMBURSEMENT(R_ID, R_REQUESTED, R_RESOLVED, R_AMOUNT, R_DESCRIPTION, EMPLOYEE_ID, MANAGER_ID, RS_ID, RT_ID) VALUES (NULL,?, NULL,?,?,?,NULL,?,?)";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getRequested()));
 			statement.setDouble(++parameterIndex, reimbursement.getAmount());
 			statement.setString(++parameterIndex, reimbursement.getDescription());
+			statement.setInt(++parameterIndex, reimbursement.getRequester().getId());
 			statement.setInt(++parameterIndex, reimbursement.getStatus().getId());
 			statement.setInt(++parameterIndex, reimbursement.getType().getId());
 
@@ -59,11 +63,9 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			int parameterIndex = 0;
-			String sql = "UPDATE REIMBURSEMENT SET (R_ID = ?, R_REQUESTED = ?, R_RESOLVED = ?, R_AMOUNT = ?, R_DESCRIPTION = ?, EMPLOYEE_ID =?, MANAGER_ID = ?, RS_ID = ?, RT_ID = ?)";
+			String sql = "UPDATE REIMBURSEMENT SET R_RESOLVED = ?, R_AMOUNT = ?, R_DESCRIPTION = ?, MANAGER_ID = ?, RS_ID = ?, RT_ID = ? WHERE R_ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 
-			statement.setInt(++parameterIndex, reimbursement.getId());
-			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getRequested()));
 			if (reimbursement.getResolved() == null) {
 				statement.setTimestamp(++parameterIndex, null);
 			} else {
@@ -71,7 +73,6 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			}
 			statement.setDouble(++parameterIndex, reimbursement.getAmount());
 			statement.setString(++parameterIndex, reimbursement.getDescription());
-			statement.setInt(++parameterIndex, reimbursement.getRequester().getId());
 			if (reimbursement.getApprover() == null){
 				statement.setInt(++parameterIndex, (Integer) null);
 			} else {
@@ -79,7 +80,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			}
 			statement.setInt(++parameterIndex,  reimbursement.getStatus().getId());
 			statement.setInt(++parameterIndex, reimbursement.getType().getId());
-
+			statement.setInt(++parameterIndex, reimbursement.getId());
 			if (statement.executeUpdate() > 0){
 				logger.info("Update Successful!");
 				return true;
@@ -319,5 +320,87 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			logger.error("Exception at ReimbursementRepositoryJDBC.selectTypes");
 		}
 		return null;
+	}
+
+	public static void main(String[] args) {
+		ReimbursementRepositoryJDBC rr = new ReimbursementRepositoryJDBC();
+		Employee anthony = new Employee(41,
+				"anthony",
+				"pena", 
+				"a", 
+				"1", 
+				"penaa@gmail.com",
+				new EmployeeRole(2,
+						"MANAGER"));
+		Employee danielle = new Employee(43,
+				"danielle",
+				"schultz", 
+				"dschultz", 
+				"1", 
+				"dschultz@gmail.com",
+				new EmployeeRole(2,
+						"MANAGER"));
+		ReimbursementStatus rs = new ReimbursementStatus(1,
+				"PENDING");
+		ReimbursementStatus rs2 = new ReimbursementStatus(3,
+				"APPROVED");
+		ReimbursementStatus rs3 = new ReimbursementStatus(2,
+				"DECLINED");
+		ReimbursementType rt = new ReimbursementType(2,
+				"COURSE");
+		ReimbursementType rt2 = new ReimbursementType(3,
+				"CERTIFICATION");
+		Reimbursement r = new Reimbursement(1,
+				LocalDateTime.now(), 
+				null, 
+				10.00, 
+				"Enthuware", 
+				anthony, 
+				null, 
+				rs3, 
+				rt);
+		Reimbursement r2 = new Reimbursement(1,
+				LocalDateTime.now(), 
+				LocalDateTime.now(), 
+				10.00, 
+				"Enthuware", 
+				anthony, 
+				danielle, 
+				rs2, 
+				rt2);
+
+		// Insert Test
+		//rr.getInstance().insert(r);
+
+		// Update Test
+		//		try {
+		//			rr.getInstance().update(r2);
+		//		} catch (SQLException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+
+		// Select test
+//		try {
+//			System.out.println(rr.getInstance().select(r2.getId()));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		// Select all Pending SET <>TEST
+		System.out.println(rr.getInstance().selectAllPending());
+		
+		// Select all Finalized SET<>
+		//System.out.println(rr.getInstance().selectAllFinalized());
+		
+		// Select Types
+		//System.out.println(rr.getInstance().selectTypes());
+		
+		// Select all finalized (int EmployeeID) TEST
+		//System.out.println(rr.getInstance().selectFinalized(41));
+		//System.out.println(rr.getInstance().selectFinalized(41).size());
+		
+		// Select all pending (int EmployeeID) TEST
+		//System.out.println(rr.getInstance().selectPending(41).size());
 	}
 }

@@ -154,3 +154,391 @@ java.sql.SQLException: Missing IN or OUT parameter at index:: 7
 2018-03-25 02:01:49 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
 2018-03-25 02:02:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
 2018-03-25 02:04:54 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 16:35:44 TRACE EmployeeRepositoryjbdc:199 - Inserting new employee token.
+2018-03-25 16:35:45 ERROR EmployeeRepositoryjbdc:214 - EmployeeToken insert successful!
+2018-03-25 16:42:25 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 16:43:24 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 16:59:30 TRACE EmployeeRepositoryjbdc:245 - Selecting employee token
+2018-03-25 16:59:31 TRACE EmployeeRepositoryjbdc:254 - SQL Executed correctly.
+2018-03-25 17:01:01 TRACE EmployeeRepositoryjbdc:245 - Selecting employee token
+2018-03-25 17:01:02 TRACE EmployeeRepositoryjbdc:254 - SQL Executed correctly.
+2018-03-25 17:03:26 INFO  EmployeeRepositoryjbdc:231 - Delete successful!
+2018-03-25 17:31:23 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 17:31:59 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 17:34:24 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 17:38:00 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 17:38:01 ERROR EmployeeRepositoryjbdc:56 - Exception at ReimbursementRepositoryJDBC.insert
+java.sql.SQLSyntaxErrorException: ORA-00947: not enough values
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:943)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1075)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3897)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1361)
+	at com.revature.repository.ReimbursementRepositoryJDBC.insert(ReimbursementRepositoryJDBC.java:49)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:352)
+2018-03-25 17:39:01 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 17:39:02 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 17:49:57 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-25 17:49:58 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-25 18:05:05 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 18:05:06 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:05:06 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:05:06 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 18:05:23 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 18:05:24 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:05:24 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:05:24 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 18:07:09 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 18:07:09 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 18:08:48 TRACE EmployeeRepositoryjbdc:221 - Grabbing pending reimbursements
+2018-03-25 18:08:49 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:08:49 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:08:49 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:08:49 TRACE EmployeeRepositoryjbdc:251 - All pending reimbursements selected!
+2018-03-25 18:11:11 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 18:11:12 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 18:11:38 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 18:11:38 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 18:11:38 TRACE EmployeeRepositoryjbdc:262 - Grabbing finalized reimbursements
+2018-03-25 18:11:40 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:11:40 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:11:40 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:11:40 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:11:41 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:11:41 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:11:41 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:11:41 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:11:41 INFO  EmployeeRepositoryjbdc:292 - All finalized reimbursements selected.
+2018-03-25 18:14:49 TRACE EmployeeRepositoryjbdc:303 - Grabbing all types of Reimbursements
+2018-03-25 18:14:50 INFO  EmployeeRepositoryjbdc:317 - Selected all types of reimbursements.
+2018-03-25 18:16:44 TRACE EmployeeRepositoryjbdc:178 - Grabbing finalized reimbursements
+2018-03-25 18:16:45 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:16:45 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:16:45 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:16:45 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:16:46 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:16:46 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:16:46 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:16:46 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:16:46 INFO  EmployeeRepositoryjbdc:210 - All finalized reimbursements selected!
+2018-03-25 18:19:30 TRACE EmployeeRepositoryjbdc:178 - Grabbing finalized reimbursements
+2018-03-25 18:19:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:32 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:19:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:32 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:19:32 INFO  EmployeeRepositoryjbdc:210 - All finalized reimbursements selected!
+2018-03-25 18:19:32 TRACE EmployeeRepositoryjbdc:178 - Grabbing finalized reimbursements
+2018-03-25 18:19:33 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:33 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:33 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:33 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:34 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:19:34 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:34 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:19:34 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:19:34 INFO  EmployeeRepositoryjbdc:210 - All finalized reimbursements selected!
+2018-03-25 18:21:35 TRACE EmployeeRepositoryjbdc:136 - Grabbing pending reimbursements
+2018-03-25 18:21:36 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:21:36 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:21:36 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:21:36 INFO  EmployeeRepositoryjbdc:167 - Selected pending requests successful!
+2018-03-25 18:23:46 TRACE EmployeeRepositoryjbdc:136 - Grabbing pending reimbursements
+2018-03-25 18:23:46 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:23:47 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:23:47 ERROR EmployeeRepositoryjbdc:107 - Employee selection successful!
+2018-03-25 18:23:47 INFO  EmployeeRepositoryjbdc:167 - Selected pending requests successful!
+2018-03-25 18:23:54 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 18:23:55 TRACE EmployeeRepositoryjbdc:179 - Gathering password.
+2018-03-25 18:23:55 INFO  EmployeeServiceAlpha:35 - Employee authentication failed. EmployeeServiceAlpha.authenticate.
+2018-03-25 18:24:46 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 18:24:46 TRACE EmployeeRepositoryjbdc:179 - Gathering password.
+2018-03-25 18:24:47 INFO  EmployeeServiceAlpha:31 - Employee authenticated.
+2018-03-25 18:29:28 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:29:29 INFO  EmployeeServiceAlpha:44 - Employee 43 acquired.
+2018-03-25 18:29:43 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 18:29:44 INFO  EmployeeServiceAlpha:44 - Employee 41 acquired.
+2018-03-25 18:31:17 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:31:17 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:31:38 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:31:38 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:31:38 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:31:38 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:33:21 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:33:21 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:33:21 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:33:21 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:33:21 TRACE EmployeeRepositoryjbdc:36 - Inserting new employee.
+2018-03-25 18:33:22 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 18:37:18 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:37:18 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:37:19 ERROR EmployeeRepositoryjbdc:169 - SelectAll successful!
+2018-03-25 18:37:19 INFO  EmployeeServiceAlpha:55 - All employees Acquired.
+2018-03-25 18:45:36 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 18:45:37 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 18:45:37 INFO  EmployeeServiceAlpha:90 - Employee Updated!
+2018-03-25 18:47:02 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 18:47:03 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 18:47:03 INFO  EmployeeServiceAlpha:102 - Employee Updated!
+2018-03-25 18:47:39 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 18:47:40 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 18:47:40 INFO  EmployeeServiceAlpha:102 - Employee Updated!
+2018-03-25 18:51:31 TRACE EmployeeRepositoryjbdc:61 - Updating new employee.
+2018-03-25 18:51:32 TRACE EmployeeRepositoryjbdc:179 - Gathering password.
+2018-03-25 18:51:34 INFO  EmployeeRepositoryjbdc:75 - Update success!
+2018-03-25 18:51:34 INFO  EmployeeServiceAlpha:102 - Employee Updated!
+2018-03-25 18:53:38 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 18:53:39 INFO  EmployeeServiceAlpha:116 - Username already exists within the database.
+2018-03-25 18:54:52 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 18:54:52 TRACE EmployeeRepositoryjbdc:138 - Employee selection successful!
+2018-03-25 18:54:52 INFO  EmployeeServiceAlpha:116 - Username already exists within the database.
+2018-03-25 18:57:09 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 18:57:10 TRACE EmployeeRepositoryjbdc:138 - Employee selection successful!
+2018-03-25 18:57:10 INFO  EmployeeServiceAlpha:116 - Username already exists within the database.
+2018-03-25 19:03:01 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 19:03:02 TRACE EmployeeRepositoryjbdc:138 - Employee selection successful!
+2018-03-25 19:03:02 INFO  EmployeeServiceAlpha:116 - Username has not been taken
+2018-03-25 19:03:21 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-25 19:03:22 INFO  EmployeeServiceAlpha:119 - Username already exists within the database.
+2018-03-25 19:05:44 TRACE EmployeeRepositoryjbdc:199 - Inserting new employee token.
+2018-03-25 19:05:45 ERROR EmployeeRepositoryjbdc:214 - EmployeeToken insert successful!
+2018-03-25 19:08:27 INFO  EmployeeRepositoryjbdc:231 - Delete successful!
+2018-03-25 19:09:47 TRACE EmployeeRepositoryjbdc:245 - Selecting employee token
+2018-03-25 19:09:48 TRACE EmployeeRepositoryjbdc:254 - SQL Executed correctly.
+2018-03-25 19:09:48 TRACE EmployeeRepositoryjbdc:270 - Employee token returned successfully.
+2018-03-25 19:09:48 TRACE EmployeeServiceAlpha:154 - Token does not exist within the database.
+2018-03-25 19:10:01 TRACE EmployeeRepositoryjbdc:199 - Inserting new employee token.
+2018-03-25 19:10:01 ERROR EmployeeRepositoryjbdc:214 - EmployeeToken insert successful!
+2018-03-25 19:10:01 TRACE EmployeeRepositoryjbdc:245 - Selecting employee token
+2018-03-25 19:10:02 TRACE EmployeeRepositoryjbdc:254 - SQL Executed correctly.
+2018-03-25 19:10:02 TRACE EmployeeRepositoryjbdc:270 - Employee token returned successfully.
+2018-03-25 19:10:02 TRACE EmployeeServiceAlpha:154 - Token does not exist within the database.
+2018-03-25 19:10:33 TRACE EmployeeRepositoryjbdc:245 - Selecting employee token
+2018-03-25 19:10:34 TRACE EmployeeRepositoryjbdc:254 - SQL Executed correctly.
+2018-03-25 19:26:47 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 19:26:48 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 19:28:26 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-25 19:28:27 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-25 19:30:00 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-25 19:30:00 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-25 19:33:27 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-25 19:33:50 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-25 19:33:51 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-25 19:36:38 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:36:38 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:36:39 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:36:39 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:36:39 INFO  ReimbursementServiceAlpha:53 - Select completed!
+2018-03-25 19:38:52 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:38:53 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:38:53 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:38:53 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:38:53 INFO  ReimbursementServiceAlpha:52 - Select completed!
+2018-03-25 19:40:32 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:40:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:40:33 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:40:33 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:40:33 INFO  ReimbursementServiceAlpha:52 - Select completed!
+2018-03-25 19:42:03 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:42:04 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:42:04 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:42:04 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:42:33 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:42:34 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:42:34 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:42:35 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:42:35 INFO  ReimbursementServiceAlpha:52 - Select completed!
+2018-03-25 19:44:05 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:44:07 ERROR EmployeeRepositoryjbdc:129 - Exception at ReimbursementRepositoryJDBC.select
+java.sql.SQLRecoverableException: IO Error: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:673)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:715)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:385)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:30)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:564)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.revature.util.ConnectionUtil.getConnection(ConnectionUtil.java:19)
+	at com.revature.repository.ReimbursementRepositoryJDBC.select(ReimbursementRepositoryJDBC.java:97)
+	at com.revature.service.ReimbursementServiceAlpha.getSingleRequest(ReimbursementServiceAlpha.java:51)
+	at com.revature.service.ReimbursementServiceAlpha.main(ReimbursementServiceAlpha.java:182)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:445)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:464)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:594)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:229)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1360)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:486)
+	... 10 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:162)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:411)
+	... 15 more
+2018-03-25 19:44:07 INFO  ReimbursementServiceAlpha:52 - Select completed!
+2018-03-25 19:45:03 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:45:05 ERROR EmployeeRepositoryjbdc:129 - Exception at ReimbursementRepositoryJDBC.select
+java.sql.SQLRecoverableException: IO Error: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:673)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:715)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:385)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:30)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:564)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.revature.util.ConnectionUtil.getConnection(ConnectionUtil.java:19)
+	at com.revature.repository.ReimbursementRepositoryJDBC.select(ReimbursementRepositoryJDBC.java:97)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:384)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:445)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:464)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:594)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:229)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1360)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:486)
+	... 9 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:162)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:411)
+	... 14 more
+2018-03-25 19:45:35 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:45:36 ERROR EmployeeRepositoryjbdc:129 - Exception at ReimbursementRepositoryJDBC.select
+java.sql.SQLRecoverableException: IO Error: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:673)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:715)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:385)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:30)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:564)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.revature.util.ConnectionUtil.getConnection(ConnectionUtil.java:19)
+	at com.revature.repository.ReimbursementRepositoryJDBC.select(ReimbursementRepositoryJDBC.java:97)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:384)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:445)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:464)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:594)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:229)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1360)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:486)
+	... 9 more
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:162)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:411)
+	... 14 more
+2018-03-25 19:51:51 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:51:52 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:51:52 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:51:52 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:52:01 TRACE EmployeeRepositoryjbdc:96 - Grabbing reinbursement by ID
+2018-03-25 19:52:01 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:52:02 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:52:02 INFO  EmployeeRepositoryjbdc:125 - Reinbursement Successful!
+2018-03-25 19:52:02 INFO  ReimbursementServiceAlpha:52 - Select completed!
+2018-03-25 19:53:09 TRACE EmployeeRepositoryjbdc:136 - Grabbing pending reimbursements
+2018-03-25 19:53:10 INFO  EmployeeRepositoryjbdc:167 - Selected pending requests successful!
+2018-03-25 19:53:10 ERROR ReimbursementServiceAlpha:69 - Issue selecting a user's pending requests.  ReimbursementServiceAlpha.getUserPendingRequests.
+2018-03-25 19:54:04 TRACE EmployeeRepositoryjbdc:136 - Grabbing pending reimbursements
+2018-03-25 19:54:05 INFO  EmployeeRepositoryjbdc:167 - Selected pending requests successful!
+2018-03-25 19:54:05 ERROR ReimbursementServiceAlpha:69 - Issue selecting a user's pending requests.  ReimbursementServiceAlpha.getUserPendingRequests.
+2018-03-25 19:54:29 TRACE EmployeeRepositoryjbdc:221 - Grabbing pending reimbursements
+2018-03-25 19:54:30 TRACE EmployeeRepositoryjbdc:251 - All pending reimbursements selected!
+2018-03-25 19:57:12 TRACE EmployeeRepositoryjbdc:221 - Grabbing pending reimbursements
+2018-03-25 19:57:12 TRACE EmployeeRepositoryjbdc:251 - All pending reimbursements selected!
+2018-03-25 19:57:30 TRACE EmployeeRepositoryjbdc:221 - Grabbing pending reimbursements
+2018-03-25 19:57:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:57:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:57:31 TRACE EmployeeRepositoryjbdc:251 - All pending reimbursements selected!
+2018-03-25 19:57:50 TRACE EmployeeRepositoryjbdc:136 - Grabbing pending reimbursements
+2018-03-25 19:57:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:57:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:57:51 INFO  EmployeeRepositoryjbdc:167 - Selected pending requests successful!
+2018-03-25 19:57:51 INFO  ReimbursementServiceAlpha:66 - Successfully gathered User pending requests.
+2018-03-25 19:58:49 TRACE EmployeeRepositoryjbdc:178 - Grabbing finalized reimbursements
+2018-03-25 19:58:50 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:50 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:50 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:50 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:51 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:58:52 INFO  EmployeeRepositoryjbdc:210 - All finalized reimbursements selected!
+2018-03-25 19:58:52 INFO  ReimbursementServiceAlpha:82 - Successfully gathered User finalized requests.
+2018-03-25 19:59:20 TRACE EmployeeRepositoryjbdc:178 - Grabbing finalized reimbursements
+2018-03-25 19:59:21 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:21 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:21 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:21 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:21 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:21 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:22 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:22 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:22 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:22 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 19:59:22 INFO  EmployeeRepositoryjbdc:210 - All finalized reimbursements selected!
+2018-03-25 19:59:22 INFO  ReimbursementServiceAlpha:82 - Successfully gathered User finalized requests.
+2018-03-25 20:00:53 TRACE EmployeeRepositoryjbdc:221 - Grabbing pending reimbursements
+2018-03-25 20:00:54 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:00:54 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:00:54 TRACE EmployeeRepositoryjbdc:251 - All pending reimbursements selected!
+2018-03-25 20:00:54 INFO  ReimbursementServiceAlpha:96 - Successfully gathered all pending requests.
+2018-03-25 20:01:29 TRACE EmployeeRepositoryjbdc:262 - Grabbing finalized reimbursements
+2018-03-25 20:01:30 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:31 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:32 TRACE EmployeeRepositoryjbdc:85 - Selecting employee.
+2018-03-25 20:01:34 INFO  EmployeeRepositoryjbdc:292 - All finalized reimbursements selected.
+2018-03-25 20:01:34 INFO  ReimbursementServiceAlpha:108 - Successfully gathered all resolved requests.
+2018-03-25 20:02:07 TRACE EmployeeRepositoryjbdc:303 - Grabbing all types of Reimbursements
+2018-03-25 20:02:08 INFO  EmployeeRepositoryjbdc:317 - Selected all types of reimbursements.
+2018-03-25 20:02:08 INFO  ReimbursementServiceAlpha:120 - Successfully gathered all Types.
+2018-03-25 20:02:17 TRACE EmployeeRepositoryjbdc:303 - Grabbing all types of Reimbursements
+2018-03-25 20:02:18 INFO  EmployeeRepositoryjbdc:317 - Selected all types of reimbursements.
+2018-03-25 20:02:18 INFO  ReimbursementServiceAlpha:120 - Successfully gathered all Types.
