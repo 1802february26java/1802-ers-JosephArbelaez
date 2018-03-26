@@ -2,6 +2,8 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Employee;
 import com.revature.service.EmployeeServiceAlpha;
@@ -16,14 +18,19 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 		return employeeInformationController;
 	}
 
+	private static Logger logger = Logger.getLogger(EmployeeInformationControllerAlpha.class);
+
 	@Override
 	public Object registerEmployee(HttpServletRequest request) {
 		if (request.getMethod().equals("GET")){
-			return "login.html";
+			logger.trace("EmployeeInformationController.registerEmployee GET");
+			return "register.html";
 		}
+		logger.trace("EmployeeInformationController.registerEmployee POST");
+
 		Employee employee = new Employee(0, request.getParameter("firstName"),
 				request.getParameter("lastName"),
-				request.getParameter("userName"),
+				request.getParameter("username"),
 				request.getParameter("password"),
 				request.getParameter("email"));
 		if (EmployeeServiceAlpha.getInstance().createEmployee(employee)) {

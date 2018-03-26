@@ -27,16 +27,16 @@ public class LoginControllerAlpha implements LoginController {
 		System.out.println(request.getParameter("password"));
 
 		// Post
-		Employee emp = new Employee();
-		emp.setUsername(request.getParameter("username"));
-		emp.setPassword(request.getParameter("password"));
-		emp = EmployeeServiceAlpha.getInstance().authenticate(emp);
+		Employee loggedEmployee = new Employee();
+		loggedEmployee.setUsername(request.getParameter("username"));
+		loggedEmployee.setPassword(request.getParameter("password"));
+		loggedEmployee = EmployeeServiceAlpha.getInstance().authenticate(loggedEmployee);
 		
-		if (emp.getId() == 0) {
+		if (loggedEmployee.getId() == 0) {
 			return new ClientMessage("AUTHENTICATION FAILED");
 		}
-			request.getSession().setAttribute("employee", emp);
-			return emp;
+			request.getSession().setAttribute("loggedEmployee", loggedEmployee);
+			return loggedEmployee;
 	}
 
 	@Override

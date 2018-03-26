@@ -45,7 +45,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			statement.setString(++parameterIndex, employee.getUsername());
 			statement.setString(++parameterIndex, employee.getPassword());
 			statement.setString(++parameterIndex, employee.getEmail());
-			statement.setInt(++parameterIndex, employee.getEmployeeRole().getId());
+			statement.setInt(++parameterIndex, 1);
 			if (statement.executeUpdate() > 0) {
 				logger.info("Insert successful!");
 				return true;
