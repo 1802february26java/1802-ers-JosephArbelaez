@@ -542,3 +542,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2018-03-25 20:02:17 TRACE EmployeeRepositoryjbdc:303 - Grabbing all types of Reimbursements
 2018-03-25 20:02:18 INFO  EmployeeRepositoryjbdc:317 - Selected all types of reimbursements.
 2018-03-25 20:02:18 INFO  ReimbursementServiceAlpha:120 - Successfully gathered all Types.
+2018-03-26 02:31:39 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-26 02:31:41 TRACE EmployeeRepositoryjbdc:179 - Gathering password.
+2018-03-26 02:31:41 INFO  EmployeeServiceAlpha:31 - Employee authenticated.
+2018-03-26 02:38:15 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
+2018-03-26 02:43:21 TRACE ConnectionUtil:24 - Connection Successful

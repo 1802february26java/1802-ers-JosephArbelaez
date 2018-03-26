@@ -115,12 +115,17 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 	public Employee select(String username) {
 		logger.trace("Selecting employee.");
 		try (Connection connection = ConnectionUtil.getConnection()){
+			logger.trace("Connection Successful");
 			int parameterIndex = 0;
 			String sql = "SELECT * FROM USER_T,USER_ROLE WHERE U_USERNAME = ? AND USER_T.UR_ID = USER_ROLE.UR_ID";
+			
+			
 			PreparedStatement statement = connection.prepareStatement(sql);
+			logger.trace("SQL inputted");
 			statement.setString(++parameterIndex, username);
+			logger.trace("username inserted");
 			ResultSet result = statement.executeQuery();
-
+			logger.trace("query executed");
 			if(result.next()) {
 				return new Employee(
 						result.getInt("U_ID"),
@@ -278,6 +283,9 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		EmployeeRepositoryjbdc er = new EmployeeRepositoryjbdc();
 		Employee emp = new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"));
 		int num =43;
+		
+		//Select user by username
+		System.out.println(er.select("antman"));
 		//System.out.println(er.getInstance().select(num));
 		//Set<Employee> s = er.selectAll();
 		//System.out.println(s);

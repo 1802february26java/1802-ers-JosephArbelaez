@@ -2,6 +2,8 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Employee;
 import com.revature.service.EmployeeServiceAlpha;
@@ -14,26 +16,27 @@ public class LoginControllerAlpha implements LoginController {
 	public static LoginController getInstance() {
 		return loginController;
 	}
+	private static Logger logger = Logger.getLogger(EmployeeServiceAlpha.class);
 	@Override
 	public Object login(HttpServletRequest request) {
+		logger.trace("LoginControllerAlpha.login");
 		if(request.getMethod().equals("GET")) {
 			return "login.html";
 		}
-		
+		System.out.println(request.getParameter("username"));
+		System.out.println(request.getParameter("password"));
+
 		// Post
-		Employee loggedEmployee = EmployeeServiceAlpha.getInstance().authenticate( new Employee(0, 
-																								null, 
-																								null, 
-																								request.getParameter("username"), 
-																								request.getParameter("password"), 
-																								null));
+		Employee emp = new Employee();
+		emp.setUsername(request.getParameter("username"));
+		emp.setPassword(request.getParameter("password"));
+		emp = EmployeeServiceAlpha.getInstance().authenticate(emp);
 		
-		if (loggedEmployee.getId() == 0) {
+		if (emp.getId() == 0) {
 			return new ClientMessage("AUTHENTICATION FAILED");
-		} else{
-			request.getSession().setAttribute("loggedEmployee", loggedEmployee);
-			return loggedEmployee;
 		}
+			request.getSession().setAttribute("employee", emp);
+			return emp;
 	}
 
 	@Override

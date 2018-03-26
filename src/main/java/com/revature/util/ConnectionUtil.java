@@ -9,6 +9,14 @@ import org.apache.log4j.Logger;
 
 public class ConnectionUtil {
 	private static Logger logger = Logger.getLogger(ConnectionUtil.class);
+	
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			logger.warn("Exception thrown adding oracle driver.", e);
+		}
+}
 	public static Connection getConnection() throws SQLException{
 
 		

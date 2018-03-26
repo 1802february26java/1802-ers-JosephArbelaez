@@ -29,7 +29,7 @@ public class EmployeeServiceAlpha implements EmployeeService {
 		Employee loggedEmployee = repository.getInstance().select(employee.getUsername());
 		 if(loggedEmployee.getPassword().equals(EmployeeRepositoryjbdc.getInstance().getPasswordHash(employee))) {
 			logger.info("Employee authenticated.");
-			//System.out.println(loggedEmployee);
+			System.out.println(loggedEmployee);
 			return loggedEmployee;
 		}
 		logger.info("Employee authentication failed. EmployeeServiceAlpha.authenticate.");
