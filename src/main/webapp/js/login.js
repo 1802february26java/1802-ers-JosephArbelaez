@@ -35,7 +35,6 @@ function login(data) {
         sessionStorage.setItem("employeeLastName", data.lastName);
         sessionStorage.setItem("employeeUsername", data.username);
         sessionStorage.setItem("employeePassword", data.password);
-        sessionStorage.setItem("employeeFirstName", data.firstName);
         sessionStorage.setItem("email",data.email);
         sessionStorage.setItem("employeeRole",JSON.stringify(data.employeeRole));
 
@@ -47,7 +46,7 @@ function login(data) {
         window.location.replace("home.do");
         }
         if(role === 2){
-       	window.location.replace("register.do");
+       	window.location.replace("managerHome.do");
         }
     }
 }

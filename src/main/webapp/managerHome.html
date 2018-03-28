@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Home</title>
-	<meta charset="UTF-8">
+
     <link rel="icon" href="images/customer.ico" />
 
     <!-- jQuery library -->
@@ -23,19 +23,16 @@
             <div class="navbar-header">
                 <a href="home.do" class="navbar-brand"><strong id="username">Home</strong></a>
             </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong id="strong">Reimbursement Actions</strong><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="newRequestEmployee.html">Submit a Reimbursement</a></li>
-                            </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="nav navbar-nav">
-                <a href="profile.html" class="navbar-brand"><strong><small>Profile</small></strong></a>
-            </div>
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Create New Request</strong><span class="caret"></span></a>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Create New Request</strong><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="getAll.do">List Customers</a></li>
+                        <li><a>Another Option</a></li>
+                    </ul>
+                </li>
+            </ul>
             <div class="nav navbar-nav navbar-right">
                 <a href="logout.do" class="navbar-brand"><strong><small>Logout</small></strong></a>
             </div>
@@ -55,6 +52,6 @@
         </tr>
     </table>
     <!-- JavaScript files -->
-    <script src="js/home.js"></script>
+    <script src="js/managerHome.js"></script>
 </body>
 </html>

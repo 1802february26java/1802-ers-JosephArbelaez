@@ -21,6 +21,7 @@ public class LoginControllerAlpha implements LoginController {
 	public Object login(HttpServletRequest request) {
 		logger.trace("LoginControllerAlpha.login");
 		if(request.getMethod().equals("GET")) {
+			logger.trace("Getting login view");
 			return "login.html";
 		}
 		System.out.println(request.getParameter("username"));
