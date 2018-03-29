@@ -40,11 +40,15 @@ window.onload = () => {
 function register(data) {
     //If message is a member of the JSON, something went wrong
     if(data.message === "REGISTRATION SUCCESSFUL") {
-        document.getElementById("registrationMessage").innerHTML = '<span class="label label-danger label-center">Something went wrong.</span>';
+        document.getElementById("registrationMessage").innerHTML = '<span class="label label-success label-center">Registration successful.</span>';
+        setTimeout(() =>{ window.location.replace("login.do");}, 2000);
+    }
+    if(data.message === "USERNAME IS TAKEN") {
+        document.getElementById("registrationMessage").innerHTML = '<span class="label label-danger label-center">Username has already been used. Please select another.</span>';
     }
     //Something went wrong
     else {
-        document.getElementById("registrationMessage").innerHTML = '<span class="label label-success label-center">Registration successful.</span>';
-        window.location.replace("login.do");
+        document.getElementById("registrationMessage").innerHTML = '<span class="label label-danger label-center">Something went wrong.</span>';
+        
     }
 }

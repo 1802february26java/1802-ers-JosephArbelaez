@@ -62,8 +62,11 @@ public class EmployeeServiceAlpha implements EmployeeService {
 	@Override
 	public boolean createEmployee(Employee employee) {
 		try { 
-			repository.insert(employee);
+			if (repository.insert(employee)){
 			return true;
+			} else {
+				return false;
+			}
 		} catch (SQLException e) {
 			if (employee.getFirstName() == null){
 				logger.error("You must enter a first name.");
@@ -87,7 +90,7 @@ public class EmployeeServiceAlpha implements EmployeeService {
 	@Override
 	public boolean updateEmployeeInformation(Employee employee) {
 		if (repository.update(employee)){
-			logger.info("Employee Updated!");
+			logger.info("Employee Updated EmployeeServiceAlpha.updateEmployee!");
 			return true;
 		} else {
 			logger.error("Employee update failed. =(");
@@ -109,14 +112,11 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public boolean isUsernameTaken(Employee employee) {
-		
-		Employee emp1 = repository.select(employee.getUsername());
-		Employee empNull = new Employee(0, null, null, null, null, null);
-		if ( emp1.equals(empNull)) {
-			logger.info("Username has not been taken");
+		logger.trace("Checking Username availability");
+		// If the selected username comes back not null, the username has been taken (true).
+		if (repository.select(employee.getUsername()) != null){
 			return true;
 		}
-		logger.info("Username already exists within the database.");
 		return false;
 	}
 

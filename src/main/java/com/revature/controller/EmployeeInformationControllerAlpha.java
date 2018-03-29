@@ -33,8 +33,12 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 				request.getParameter("username"),
 				request.getParameter("password"),
 				request.getParameter("email"));
+
+		if (EmployeeServiceAlpha.getInstance().isUsernameTaken(employee)){
+			return new ClientMessage("USERNAME IS TAKEN");
+		}
 		if (EmployeeServiceAlpha.getInstance().createEmployee(employee)) {
-			return new ClientMessage("REGISTRATION SUCCESSUL");
+			return new ClientMessage("REGISTRATION SUCCESSFUL");
 		} else {
 			return new ClientMessage("SOMETHING WENT WRONG");
 		}
@@ -45,13 +49,13 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 		if (request.getMethod().equals("GET")){
 			return "login.html";
 		}
-		
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("employee");
-		
+		logger.trace("Inside updateEmployee");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+
 		if (loggedEmployee == null) {
 			return "login.html";
 		}
-		
+
 		Employee employee = new Employee (
 				loggedEmployee.getId(),
 				request.getParameter("firstname"),
@@ -60,11 +64,12 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 				null,
 				request.getParameter("email"),
 				loggedEmployee.getEmployeeRole());
-		
+		logger.trace(employee);
 		if (EmployeeServiceAlpha.getInstance().updateEmployeeInformation(employee)) {
-			return new ClientMessage("Update Successful!");
+			logger.trace("Successful update! EmployeeInformationController.updateEmployee");
+			return new ClientMessage("REGISTRATION SUCCESSFUL");
 		} else {
-			return new ClientMessage("Update Failed...");
+			return new ClientMessage("SOMETHING WENT WRONG");
 		}
 	}
 
@@ -73,7 +78,7 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 		if (request.getMethod().equals("GET")){
 			return "login.html";
 		} 
-		
+
 		Employee loggedEmployee = (Employee) request.getSession().getAttribute("employee");
 		if(loggedEmployee == null) {
 			return"login.html";

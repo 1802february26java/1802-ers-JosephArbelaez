@@ -52,27 +52,30 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			}
 		} catch (SQLException e) {
 			logger.error("Exception at EmployeeRepositoryjbdc.insert", e);
-		}
-		return false;
+			return false;
+		} 
+			return false;
 	}
 
 	@Override
 	public boolean update(Employee employee) {
-		logger.trace("Updating new employee.");
+		logger.trace("Updating new employee." + employee);
 
 		try (Connection connection = ConnectionUtil.getConnection()){
 			int parameterIndex = 0;
-			String sql = "UPDATE USER_T SET U_FIRSTNAME = ?, U_LASTNAME = ?, U_PASSWORD = ? , U_EMAIL =? WHERE U_ID =?";
+			String sql = "UPDATE USER_T SET U_FIRSTNAME = ?, U_LASTNAME = ?, U_USERNAME = ?, U_EMAIL =? WHERE U_ID =?";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, employee.getFirstName());
 			statement.setString(++parameterIndex, employee.getLastName());
-			statement.setString(++parameterIndex, getPasswordHash(employee));
+			statement.setString(++parameterIndex, employee.getUsername());
 			statement.setString(++parameterIndex, employee.getEmail());
 			statement.setInt(++parameterIndex, employee.getId());
+			logger.trace(statement);
 			int num = statement.executeUpdate();
-			if ( num > 0) {
-				logger.info("Update success!");
+			if (num > 0) {
+				;
+				logger.info("Update success! EmployeeRepositoryjbdc.update");
 				return true;
 			}
 		} catch (SQLException e) {
@@ -127,6 +130,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			ResultSet result = statement.executeQuery();
 			logger.trace("query executed");
 			if(result.next()) {
+				logger.trace("Employee selection successful!");
 				return new Employee(
 						result.getInt("U_ID"),
 						result.getString("U_FIRSTNAME"),
@@ -140,11 +144,11 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 								)
 						);
 			}
-			logger.trace("Employee selection successful!");
+			
 		} catch (SQLException e) {
 			logger.error("Exception thrown while selecting employee by username", e);
 		}
-		return new Employee();
+		return null;
 	}
 
 
