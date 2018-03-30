@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<meta charset="UTF-8">
+<link rel="icon" href="images/customer.ico" />
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Boostrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Boostrap JS -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Our CSS -->
+<link rel="stylesheet" href="css/our.css" />
+</head>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="home.do" class="navbar-brand"><strong id="username">Home</strong></a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"><strong id="strong">Reimbursement
+							Actions</strong><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="newRequestEmployee.html">Submit a
+								Reimbursement</a></li>
+						<li><a href="viewReimbursements.html">View Pending
+								Reimbursements</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<div class="nav navbar-nav">
+			<a href="profile.html" class="navbar-brand"><strong><small>Profile</small></strong></a>
+		</div>
+		<div class="nav navbar-nav navbar-right">
+			<a href="logout.do" class="navbar-brand"><strong><small>Logout</small></strong></a>
+		</div>
+	</div>
+</nav>
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading"></div>
+			<table id= "table" class = "table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Time Requested</th> 
+				<th>Amount</th>
+				<th>Description</th>
+				<th>Approver</th>
+				<th>Type</th>
+			</tr>
+		</thead>
+			<tbody id = "pendingReimbursementsList"></tbody>
+	</table>
+	<!--<ul id = "pendingReimbursementsList" class="list-group"></ul> -->
+	<div id="registrationMessage"></div>
+	<button id="pending" class="btn btn-md btn-success btn-block">View Pending</button>
+	<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+<!-- JavaScript files -->
+<script src="js/reimbursementsEmployee.js"></script>
+</body>
+</html>

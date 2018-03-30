@@ -92,31 +92,25 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 	@Override
 	public Object multipleRequests(HttpServletRequest request) {
 		logger.trace("ReimbursementControllerAlpha.multipleRequests");
-
 		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
 
 		if(loggedEmployee == null) {
 			return "login.html";
 		}
-		Reimbursement reimbursement = new Reimbursement(Integer.parseInt(request.getParameter("reimbursementId")),
-				LocalDateTime.now(),
-				null,
-				10.00,
-				null,
-				null,
-				null,
-				new ReimbursementStatus(),
-				new ReimbursementType());
+		
 		if(loggedEmployee.getEmployeeRole().getId() == 1) {
+			logger.trace("Employee IDentified as Employee");
 			if(request.getParameter("fetch").equals("finalized")){
-				logger.trace("ReimbursementControllerAlpha.multipleRequests - Employee Route.");
+				logger.trace("ReimbursementControllerAlpha.multipleRequests - Finalized Employee Route.");
 				Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getUserFinalizedRequests(loggedEmployee));
 				reimbursements.addAll(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
 				return reimbursements;
-			} else if(request.getParameter("fetch").equals("pending")){
-				logger.trace("ReimbursementControllerAlpha.multipleRequests - Employee Route.");
+			}
+			if(request.getParameter("fetch").equals("pending")){
+				logger.trace("ReimbursementControllerAlpha.multipleRequests - Pending Employee Route.");
 				Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
-				reimbursements.addAll(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
+				//reimbursements.addAll(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
+				logger.trace(reimbursements);
 				return reimbursements;
 			}
 		} 
