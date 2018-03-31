@@ -97,7 +97,7 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 		if(loggedEmployee == null) {
 			return "login.html";
 		}
-		
+
 		if(loggedEmployee.getEmployeeRole().getId() == 1) {
 			logger.trace("Employee Identified as Employee");
 			if(request.getParameter("fetch").equals("finalized")){
@@ -112,47 +112,55 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 				return reimbursements;
 			}
 		}
-		
+
 		if (loggedEmployee.getEmployeeRole().getId() == 2){
-			
+			logger.trace("Employee Identified as Manager");
+			if(request.getParameter("eid").equals("0")){
+				logger.trace("Getting Requests for All Employees.");
+				if (request.getParameter("fetch").equals("pending")){
+					logger.trace("ReimbursementControllerAlpha.multipleRequests - Pending Manager");
+					Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getAllPendingRequests());
+					return reimbursements;
+				}
+			}
+			}
+
+			return new ClientMessage("Must add Manager code to ReimbursementControllerAlpha.multipleRequests.");
 		}
 
-		return new ClientMessage("Must add Manager code to ReimbursementControllerAlpha.multipleRequests.");
-	}
+		@Override
+		public Object finalizeRequest(HttpServletRequest request) {
+			logger.trace("ReimbursementControllerAlpha.finalizeRequest");
+			Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
 
-	@Override
-	public Object finalizeRequest(HttpServletRequest request) {
-		logger.trace("ReimbursementControllerAlpha.finalizeRequest");
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
-		
-		if(loggedEmployee == null) {
-			logger.trace("Not signed in");
-			return "login.html";
-		}
-		
-		Reimbursement reimbursement = new Reimbursement(Integer.parseInt(request.getParameter("reimbursementId")));
-		ReimbursementStatus status = new ReimbursementStatus(Integer.parseInt(request.getParameter("statusId")),request.getParameter("status"));
-		Reimbursement update = ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);
-		update.setStatus(status);
-		update.setResolved(LocalDateTime.now());
-		
-		if(ReimbursementServiceAlpha.getInstance().finalizeRequest(update)){
-			return new ClientMessage("UPDATE SUCCESSFUL");
-		} else {
-			return new ClientMessage("SOMETHING WENT WRONG");
-		}
-	}
-	@Override
-	public Object getRequestTypes(HttpServletRequest request) {
-		logger.trace("ReimbursementControllerAlpha.getRequestTypes");
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
-		
-		if(loggedEmployee == null) {
-			logger.trace("Not signed in");
-			return "login.html";
-		}
-		Set<ReimbursementType> types = ReimbursementServiceAlpha.getInstance().getReimbursementTypes();
-		return types;
-	}
+			if(loggedEmployee == null) {
+				logger.trace("Not signed in");
+				return "login.html";
+			}
 
-}
+			Reimbursement reimbursement = new Reimbursement(Integer.parseInt(request.getParameter("reimbursementId")));
+			ReimbursementStatus status = new ReimbursementStatus(Integer.parseInt(request.getParameter("statusId")),request.getParameter("status"));
+			Reimbursement update = ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);
+			update.setStatus(status);
+			update.setResolved(LocalDateTime.now());
+
+			if(ReimbursementServiceAlpha.getInstance().finalizeRequest(update)){
+				return new ClientMessage("UPDATE SUCCESSFUL");
+			} else {
+				return new ClientMessage("SOMETHING WENT WRONG");
+			}
+		}
+		@Override
+		public Object getRequestTypes(HttpServletRequest request) {
+			logger.trace("ReimbursementControllerAlpha.getRequestTypes");
+			Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+
+			if(loggedEmployee == null) {
+				logger.trace("Not signed in");
+				return "login.html";
+			}
+			Set<ReimbursementType> types = ReimbursementServiceAlpha.getInstance().getReimbursementTypes();
+			return types;
+		}
+
+	}
