@@ -50,7 +50,7 @@ public interface EmployeeRepository {
 	/**
 	 * Returns information of all employees.
 	 */
-	public Set<Employee> selectAll();
+	public Set<Employee> selectAll(int num);
 	
 	/**
 	 * Executes and returns a password hash for an employee.

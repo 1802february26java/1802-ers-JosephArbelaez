@@ -653,3 +653,28 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2018-03-31 16:28:42 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
 2018-03-31 16:28:42 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
 2018-03-31 16:28:42 INFO  EmployeeRepositoryjbdc:289 - All finalized reimbursements selected.
+2018-03-31 17:15:26 ERROR EmployeeRepositoryjbdc:183 - Exception at EmployeeRepositoryjbdc.selectAll
+java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:776)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:897)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1034)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3867)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1502)
+	at com.revature.repository.EmployeeRepositoryjbdc.selectAll(EmployeeRepositoryjbdc.java:162)
+	at com.revature.repository.EmployeeRepositoryjbdc.main(EmployeeRepositoryjbdc.java:296)
+2018-03-31 17:16:08 ERROR EmployeeRepositoryjbdc:180 - SelectAll successful!
+2018-03-31 17:16:27 ERROR EmployeeRepositoryjbdc:180 - SelectAll successful!
+2018-03-31 17:18:03 ERROR EmployeeRepositoryjbdc:180 - SelectAll successful!
+2018-03-31 17:18:20 ERROR EmployeeRepositoryjbdc:180 - SelectAll successful!
+2018-03-31 17:18:47 ERROR EmployeeRepositoryjbdc:180 - SelectAll successful!
+2018-03-31 17:19:25 ERROR EmployeeRepositoryjbdc:180 - SelectAll successful!

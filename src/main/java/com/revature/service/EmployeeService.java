@@ -33,7 +33,7 @@ public interface EmployeeService {
 	/**
 	 * Returns information of all employees.
 	 */
-	public Set<Employee> getAllEmployeesInformation();
+	public Set<Employee> getAllEmployeesInformation(int num);
 	
 	/**
 	 * Registers an employee in the database.

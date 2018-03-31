@@ -5,6 +5,7 @@ window.onload = () =>{
     document.getElementById("pending").addEventListener("click", getAllPendingReimbursements);
 
     document.getElementById("finalized").addEventListener("click", getAllFinalizedReimbursements);
+
 }
 
 function getAllPendingReimbursements(){

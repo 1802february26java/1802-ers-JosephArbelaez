@@ -153,10 +153,12 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 
 
 	@Override
-	public Set<Employee> selectAll() {
+	public Set<Employee> selectAll(int num) {
 		try(Connection connection = ConnectionUtil.getConnection()){
-			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID";
+			int parameterIndex = 0;
+			String sql = "SELECT * FROM USER_T INNER JOIN USER_ROLE ON USER_T.UR_ID = USER_ROLE.UR_ID WHERE USER_T.UR_ID < ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(++parameterIndex, num);
 			ResultSet result = statement.executeQuery();
 
 			Set<Employee> set = new HashSet<>();
@@ -176,6 +178,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 						);
 			}
 			logger.error("SelectAll successful!");
+			logger.trace(set);
 			return set;
 		}catch (SQLException e){
 			logger.error("Exception at EmployeeRepositoryjbdc.selectAll", e);
@@ -289,9 +292,10 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		int num =43;
 		
 		//Select user by username
-		System.out.println(er.select("antman"));
+		//System.out.println(er.select("antman"));
 		//System.out.println(er.getInstance().select(num));
-		//Set<Employee> s = er.selectAll();
+		//Set<Employee> s = er.selectAll(3);
+		//System.out.println(s);
 		//System.out.println(s);
 
 		//Insert Employee Token Testing

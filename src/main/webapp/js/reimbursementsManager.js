@@ -5,6 +5,40 @@ window.onload = () =>{
     document.getElementById("pending").addEventListener("click", getAllPendingReimbursements);
 
     document.getElementById("finalized").addEventListener("click", getAllFinalizedReimbursements);
+
+    getPopulateDropdown();
+}
+
+function getPopulateDropdown(){
+    //AJAX Logic
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status ===200){
+            let data = JSON.parse(xhr.responseText);
+              console.log(data);
+
+            populate(data);
+        }
+    };
+      //Doing a HTTP to a specifc endpoint
+      xhr.open("POST",`getAllEmployees.do?num=2`);
+      xhr.send();
+  }
+
+function populate(data) {
+    let ddlEmployee = document.getElementById("ddlEmployee");
+
+    // Clean the customer list.
+    //list.innerHTML ="";
+
+    // Iterate over all customers
+    data.forEach((employee) => {
+        let option = document.createElement("option");
+        var emp = document.createTextNode(`${employee.lastName}, ${employee.firstName}`);
+        option.appendChild(emp);
+        ddlEmployee.appendChild(option);
+    });
 }
 
 function getAllPendingReimbursements(){

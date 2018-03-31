@@ -49,10 +49,11 @@ public class EmployeeServiceAlpha implements EmployeeService {
 	}
 
 	@Override
-	public Set<Employee> getAllEmployeesInformation() {
-		Set<Employee> allEmployees = repository.selectAll();
+	public Set<Employee> getAllEmployeesInformation(int num) {
+		Set<Employee> allEmployees = repository.selectAll(num);
 		if (allEmployees.size() > 0){
 			logger.info("All employees Acquired.");
+			logger.trace(allEmployees);
 			return allEmployees;
 		}
 		logger.error("Error acquiring all Employees Information. EmployeeServiceAlpha.getAllEmployeesInformation.");

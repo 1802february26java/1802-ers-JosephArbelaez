@@ -61,6 +61,8 @@ public class RequestHelper {
 			return EmployeeInformationControllerAlpha.getInstance().updateEmployee(request);
 		case "/ERS/reimbursements.do":
 			return ReimbursementControllerAlpha.getInstance().multipleRequests(request);
+		case "/ERS/getAllEmployees.do":
+			return EmployeeInformationControllerAlpha.getInstance().viewAllEmployees(request);
 		default:
 			return null;
 		}

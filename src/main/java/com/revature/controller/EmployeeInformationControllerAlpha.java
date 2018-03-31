@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -89,19 +91,30 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 
 	@Override
 	public Object viewAllEmployees(HttpServletRequest request) {
+		logger.trace("EmployeeInformationController.viewAllEmployees");
 		if (request.getMethod().equals("GET")){
-			return "register.html";
+			return "login.html";
 		}
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("employee");
-
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+		
+		logger.trace(loggedEmployee);
 		/* If customer is not logged in */
 		if(loggedEmployee == null) {
 			return "login.html";
-		} else if (loggedEmployee.getEmployeeRole().getId() == 2) {
-			return EmployeeServiceAlpha.getInstance().getAllEmployeesInformation();
-		} else {
-			return "404.html";
+		} 
+		if (loggedEmployee.getEmployeeRole().getId() == 2) {
+			logger.trace("Employee is Manager");
+			if (request.getParameter("num").equals("2")){
+				logger.trace("Num = 2");
+				Set<Employee> set = EmployeeServiceAlpha.getInstance().getAllEmployeesInformation(2);
+				logger.trace(set);
+				return set;
+			}
+			if (request.getParameter("num").equals("3")){
+				return EmployeeServiceAlpha.getInstance().getAllEmployeesInformation(3);
+			}	
 		}
+		return "404.html";
 	}
 
 	@Override
