@@ -1,0 +1,12 @@
+.button{
+    border: 3px, solid, rgb(1, 15, 1);
+    background-color: black;
+    color: white;
+    width: 20%;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.container{
+    text-align:center;
+}

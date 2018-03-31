@@ -547,3 +547,23 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2018-03-26 02:31:41 INFO  EmployeeServiceAlpha:31 - Employee authenticated.
 2018-03-26 02:38:15 TRACE EmployeeRepositoryjbdc:116 - Selecting employee.
 2018-03-26 02:43:21 TRACE ConnectionUtil:24 - Connection Successful
+2018-03-30 12:59:09 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-30 12:59:11 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-30 13:01:26 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-30 13:01:27 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 12:38:07 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 12:38:08 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 12:42:21 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 12:42:22 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 12:43:40 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 12:43:41 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 12:44:13 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 12:44:14 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 12:44:46 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 12:44:47 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 12:47:44 TRACE EmployeeRepositoryjbdc:35 - Inserting new reinbursement.
+2018-03-31 12:47:45 INFO  EmployeeRepositoryjbdc:50 - Insert successful!
+2018-03-31 13:16:40 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 13:16:42 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
+2018-03-31 13:20:03 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 13:20:04 INFO  EmployeeRepositoryjbdc:81 - Update Successful!

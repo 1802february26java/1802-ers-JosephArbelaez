@@ -42,6 +42,9 @@ public class Reimbursement implements Serializable, Comparable<Reimbursement> {
 		this.type = type;
 	}
 
+	public Reimbursement(int id){
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}

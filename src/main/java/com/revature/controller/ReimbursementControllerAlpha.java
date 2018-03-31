@@ -99,35 +99,60 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 		}
 		
 		if(loggedEmployee.getEmployeeRole().getId() == 1) {
-			logger.trace("Employee IDentified as Employee");
+			logger.trace("Employee Identified as Employee");
 			if(request.getParameter("fetch").equals("finalized")){
 				logger.trace("ReimbursementControllerAlpha.multipleRequests - Finalized Employee Route.");
 				Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getUserFinalizedRequests(loggedEmployee));
-				reimbursements.addAll(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
 				return reimbursements;
 			}
 			if(request.getParameter("fetch").equals("pending")){
 				logger.trace("ReimbursementControllerAlpha.multipleRequests - Pending Employee Route.");
 				Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
-				//reimbursements.addAll(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(loggedEmployee));
 				logger.trace(reimbursements);
 				return reimbursements;
 			}
-		} 
+		}
+		
+		if (loggedEmployee.getEmployeeRole().getId() == 2){
+			
+		}
 
 		return new ClientMessage("Must add Manager code to ReimbursementControllerAlpha.multipleRequests.");
 	}
 
 	@Override
 	public Object finalizeRequest(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.trace("ReimbursementControllerAlpha.finalizeRequest");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+		
+		if(loggedEmployee == null) {
+			logger.trace("Not signed in");
+			return "login.html";
+		}
+		
+		Reimbursement reimbursement = new Reimbursement(Integer.parseInt(request.getParameter("reimbursementId")));
+		ReimbursementStatus status = new ReimbursementStatus(Integer.parseInt(request.getParameter("statusId")),request.getParameter("status"));
+		Reimbursement update = ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);
+		update.setStatus(status);
+		update.setResolved(LocalDateTime.now());
+		
+		if(ReimbursementServiceAlpha.getInstance().finalizeRequest(update)){
+			return new ClientMessage("UPDATE SUCCESSFUL");
+		} else {
+			return new ClientMessage("SOMETHING WENT WRONG");
+		}
 	}
-
 	@Override
 	public Object getRequestTypes(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.trace("ReimbursementControllerAlpha.getRequestTypes");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+		
+		if(loggedEmployee == null) {
+			logger.trace("Not signed in");
+			return "login.html";
+		}
+		Set<ReimbursementType> types = ReimbursementServiceAlpha.getInstance().getReimbursementTypes();
+		return types;
 	}
 
 }

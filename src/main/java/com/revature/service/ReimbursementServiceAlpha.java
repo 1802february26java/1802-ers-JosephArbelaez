@@ -114,6 +114,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 
 	@Override
 	public Set<ReimbursementType> getReimbursementTypes() {
+		logger.trace("ReimbursementServiceAlpha.getReimbursementTypes.");
 		Set<ReimbursementType> set = new HashSet<ReimbursementType>();
 		set = repository.selectTypes();
 		if (set.size() > 0){	
@@ -126,12 +127,12 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 	
 	public static void main(String[] args) {
 		ReimbursementServiceAlpha rsa = new ReimbursementServiceAlpha();
-		Employee anthony = new Employee(41,
-				"anthony",
-				"pena", 
+		Employee joe = new Employee(21,
+				"joseph",
+				"arbelaez", 
 				"a", 
 				"1", 
-				"penaa@gmail.com",
+				"jarbelaez@gmail.com",
 				new EmployeeRole(2,
 						"MANAGER"));
 		Employee danielle = new Employee(43,
@@ -157,7 +158,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 				null, 
 				10.00, 
 				"Enthuware", 
-				anthony, 
+				joe, 
 				null, 
 				rs3, 
 				rt);
@@ -166,8 +167,8 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 				LocalDateTime.now(), 
 				10.00, 
 				"Enthuware", 
+				joe, 
 				danielle, 
-				anthony, 
 				rs2, 
 				rt2);
 		
@@ -175,7 +176,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 		//System.out.println(rsa.getInstance().submitRequest(r));
 		
 		// Finalize Request Test
-		// System.out.println(rsa.getInstance().finalizeRequest(r2));
+		//System.out.println(rsa.getInstance().finalizeRequest(r2));
 		
 		// Get Single Request Test
 		// System.out.println(rsa.getInstance().getSingleRequest(r2));
@@ -193,7 +194,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 		//System.out.println(rsa.getInstance().getAllResolvedRequests().size());
 		
 		// Get all reimbursement types
-		System.out.println(rsa.getInstance().getReimbursementTypes().size());
+		//System.out.println(rsa.getInstance().getReimbursementTypes().size());
 	}
 
 }

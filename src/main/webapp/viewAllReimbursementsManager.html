@@ -21,32 +21,27 @@
 <link rel="stylesheet" href="css/our.css" />
 </head>
 <nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a href="home.do" class="navbar-brand"><strong id="username">Home</strong></a>
-		</div>
-		<div>
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false"><strong id="strong">Reimbursement
-							Actions</strong><span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="newRequestEmployee.html">Submit a
-								Reimbursement</a></li>
-						<li><a href="viewReimbursements.html">View Pending
-								Reimbursements</a></li>
-					</ul></li>
-			</ul>
-		</div>
-		<div class="nav navbar-nav">
-			<a href="profile.html" class="navbar-brand"><strong><small>Profile</small></strong></a>
-		</div>
-		<div class="nav navbar-nav navbar-right">
-			<a href="logout.do" class="navbar-brand"><strong><small>Logout</small></strong></a>
-		</div>
-	</div>
-</nav>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="home.do" class="navbar-brand"><strong id="username">Home</strong></a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong id="strong">Reimbursement Actions</strong><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="viewAllReimbursementsManager.html">View All Reimbursements</a></li>                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav navbar-nav">
+                <a href="profile.html" class="navbar-brand"><strong><small>Profile</small></strong></a>
+            </div>
+            <div class="nav navbar-nav navbar-right">
+                <a href="logout.do" class="navbar-brand"><strong><small>Logout</small></strong></a>
+            </div>
+        </div>
+    </nav>
 <div class="col-md-12">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -65,7 +60,8 @@
 				<th>Amount</th>
 				<th>Description</th>
 				<th>Status</th>
-				<th>Type</th>
+                <th>Type</th>
+                <th>Options</th>
 			</tr>
 		</thead>
 			<tbody id = "pendingReimbursementsList"></tbody>

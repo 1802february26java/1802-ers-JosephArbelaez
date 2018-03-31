@@ -65,12 +65,8 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			int parameterIndex = 0;
 			String sql = "UPDATE REIMBURSEMENT SET R_RESOLVED = ?, R_AMOUNT = ?, R_DESCRIPTION = ?, MANAGER_ID = ?, RS_ID = ?, RT_ID = ? WHERE R_ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
-
-			if (reimbursement.getResolved() == null) {
-				statement.setTimestamp(++parameterIndex, null);
-			} else {
-				statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getResolved()));
-			}
+			
+			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getResolved()));
 			statement.setDouble(++parameterIndex, reimbursement.getAmount());
 			statement.setString(++parameterIndex, reimbursement.getDescription());
 			if (reimbursement.getApprover() == null){
@@ -191,7 +187,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 				reimbursements.add(new Reimbursement(
 						result.getInt("R_ID"),
 						result.getTimestamp("R_REQUESTED").toLocalDateTime(),
-						null,
+						result.getTimestamp("R_RESOLVED").toLocalDateTime(),
 						result.getDouble("R_AMOUNT"),
 						result.getString("R_DESCRIPTION"),
 						EmployeeRepositoryjbdc.getInstance().select(result.getInt("EMPLOYEE_ID")),
@@ -208,6 +204,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						);
 			}
 			logger.info("All finalized reimbursements selected!");
+			logger.info(reimbursements);
 			return reimbursements;
 
 		} catch (SQLException e) {
@@ -300,7 +297,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 	@Override
 	public Set<ReimbursementType> selectTypes() {
-		logger.trace("Grabbing all types of Reimbursements");
+		logger.trace("ReimbursementRepositoryJDBC.selectTypes");
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM REIMBURSEMENT_TYPE";
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -324,14 +321,14 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 	public static void main(String[] args) {
 		ReimbursementRepositoryJDBC rr = new ReimbursementRepositoryJDBC();
-		Employee anthony = new Employee(41,
-				"anthony",
-				"pena", 
-				"a", 
+		Employee joe = new Employee(21,
+				"joseph",
+				"arbelaez", 
+				"jarbelaez", 
 				"1", 
 				"penaa@gmail.com",
-				new EmployeeRole(2,
-						"MANAGER"));
+				new EmployeeRole(1,
+						"EMPLOYEE"));
 		Employee danielle = new Employee(43,
 				"danielle",
 				"schultz", 
@@ -355,16 +352,16 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 				null, 
 				10.00, 
 				"Enthuware", 
-				anthony, 
+				joe, 
 				null, 
-				rs3, 
+				rs2, 
 				rt);
-		Reimbursement r2 = new Reimbursement(1,
+		Reimbursement r2 = new Reimbursement(81,
 				LocalDateTime.now(), 
 				LocalDateTime.now(), 
 				10.00, 
 				"Enthuware", 
-				anthony, 
+				joe, 
 				danielle, 
 				rs2, 
 				rt2);
@@ -372,12 +369,13 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 		// Insert Test
 		//rr.getInstance().insert(r);
 
-		// Update Test
-		//		try {
-		//			rr.getInstance().update(r2);
-		//		} catch (SQLException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
+		//Update Test
+				try {
+					rr.getInstance().update(r2);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 		// Select test
 //		try {
@@ -388,7 +386,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 //		}
 		
 		// Select all Pending SET <>TEST
-		System.out.println(rr.getInstance().selectAllPending());
+		//System.out.println(rr.getInstance().selectAllPending());
 		
 		// Select all Finalized SET<>
 		//System.out.println(rr.getInstance().selectAllFinalized());
