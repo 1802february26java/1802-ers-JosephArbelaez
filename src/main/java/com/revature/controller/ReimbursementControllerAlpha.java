@@ -103,6 +103,7 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 			if(request.getParameter("fetch").equals("finalized")){
 				logger.trace("ReimbursementControllerAlpha.multipleRequests - Finalized Employee Route.");
 				Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getUserFinalizedRequests(loggedEmployee));
+				logger.trace(reimbursements);
 				return reimbursements;
 			}
 			if(request.getParameter("fetch").equals("pending")){
@@ -122,9 +123,13 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 					Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getAllPendingRequests());
 					return reimbursements;
 				}
+				if (request.getParameter("fetch").equals("finalized")){
+					logger.trace("ReimbursementControllerAlpha.multipleRequests - Finalized Manager");
+					Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getAllResolvedRequests());
+					return reimbursements;
 			}
 			}
-
+		}
 			return new ClientMessage("Must add Manager code to ReimbursementControllerAlpha.multipleRequests.");
 		}
 

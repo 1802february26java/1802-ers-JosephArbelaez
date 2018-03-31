@@ -567,3 +567,89 @@ Caused by: java.net.ConnectException: Connection refused: connect
 2018-03-31 13:16:42 INFO  EmployeeRepositoryjbdc:85 - Update Successful!
 2018-03-31 13:20:03 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
 2018-03-31 13:20:04 INFO  EmployeeRepositoryjbdc:81 - Update Successful!
+2018-03-31 16:18:16 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 16:18:17 INFO  EmployeeRepositoryjbdc:81 - Update Successful!
+2018-03-31 16:18:48 TRACE EmployeeRepositoryjbdc:62 - Updating reimbursement
+2018-03-31 16:18:49 INFO  EmployeeRepositoryjbdc:81 - Update Successful!
+2018-03-31 16:25:34 TRACE EmployeeRepositoryjbdc:259 - Grabbing finalized reimbursements
+2018-03-31 16:25:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:37 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:37 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:37 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:39 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:39 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:25:39 INFO  EmployeeRepositoryjbdc:289 - All finalized reimbursements selected.
+2018-03-31 16:26:21 TRACE EmployeeRepositoryjbdc:259 - Grabbing finalized reimbursements
+2018-03-31 16:26:22 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:22 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:22 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:23 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:23 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:23 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:24 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:24 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:24 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:25 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:25 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:25 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:26 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:26 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:26 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:26 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:26:27 INFO  EmployeeRepositoryjbdc:289 - All finalized reimbursements selected.
+2018-03-31 16:28:31 TRACE EmployeeRepositoryjbdc:218 - Grabbing pending reimbursements
+2018-03-31 16:28:32 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:32 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:32 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:33 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:33 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:33 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:33 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:34 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:34 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:34 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:34 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:34 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:35 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:35 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:35 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:36 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:36 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:37 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:37 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:37 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:37 ERROR EmployeeRepositoryjbdc:110 - Employee selection successful!
+2018-03-31 16:28:37 TRACE EmployeeRepositoryjbdc:248 - All pending reimbursements selected!
+2018-03-31 16:28:37 TRACE EmployeeRepositoryjbdc:259 - Grabbing finalized reimbursements
+2018-03-31 16:28:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:38 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:39 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:39 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:39 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:39 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:40 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:40 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:40 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:41 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:41 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:41 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:42 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:42 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:42 TRACE EmployeeRepositoryjbdc:88 - Selecting employee.
+2018-03-31 16:28:42 INFO  EmployeeRepositoryjbdc:289 - All finalized reimbursements selected.

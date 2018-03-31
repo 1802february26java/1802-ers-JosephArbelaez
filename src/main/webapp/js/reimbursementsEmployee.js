@@ -135,8 +135,7 @@ function displayFinalizedReimbursements(data) {
             var id = document.createTextNode(`${reimbursement.id}`);
             var tApproved = document.createTextNode(`${reimbursement.requested.year}-${reimbursement.requested.monthValue}-${reimbursement.requested.dayOfMonth}, ${reimbursement.requested.hour}:${reimbursement.requested.minute}:${reimbursement.requested.second}`);
             var tResolved = document.createTextNode(`${reimbursement.resolved.year}-${reimbursement.resolved.monthValue}-${reimbursement.resolved.dayOfMonth}, ${reimbursement.resolved.hour}:${reimbursement.resolved.minute}:${reimbursement.resolved.second}`);
-            var approver = document.createTextNode("-");
-            var amount = document.createTextNode(`${reimbursement.amount}`);
+            var approver = document.createTextNode(`${reimbursement.approver.lastName}, ${reimbursement.approver.firstName}`);            var amount = document.createTextNode(`${reimbursement.amount}`);
             var description = document.createTextNode(`${reimbursement.description}`);
             var status = document.createTextNode(`${reimbursement.status.status}`);
             var type = document.createTextNode(`${reimbursement.type.type}`);
@@ -161,7 +160,7 @@ function displayFinalizedReimbursements(data) {
             tablerow.appendChild(tabledata6);
             tablerow.appendChild(tabledata7);
             tablerow.appendChild(tabledata8);
-            
+
             customerList.appendChild(tablerow);
         });
     }

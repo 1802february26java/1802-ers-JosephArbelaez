@@ -259,7 +259,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 		logger.trace("Grabbing finalized reimbursements");
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			int parameterIndex = 0;
-			String sql = "SELECT * FROM REIMBURSEMENT INNER JOIN REIMBURSEMENT_STATUS ON REIMBURSEMENT.RS_ID = REIMBURSEMENT_STATUS.RS_ID INNER JOIN REIMBURSEMENT_TYPE ON REIMBURSEMENT.RT_ID = REIMBURSEMENT_TYPE.RT_ID WHERE REIMBURSEMENT.RS_ID = ? OR REIMBURSEMENT.RS_ID = ?";
+			String sql = "SELECT * FROM REIMBURSEMENT INNER JOIN REIMBURSEMENT_STATUS ON REIMBURSEMENT.RS_ID = REIMBURSEMENT_STATUS.RS_ID INNER JOIN REIMBURSEMENT_TYPE ON REIMBURSEMENT.RT_ID = REIMBURSEMENT_TYPE.RT_ID WHERE (REIMBURSEMENT.RS_ID = ? OR REIMBURSEMENT.RS_ID = ?)";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(++parameterIndex, 2);
@@ -271,7 +271,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 				reimbursements.add(new Reimbursement(
 						result.getInt("R_ID"),
 						result.getTimestamp("R_REQUESTED").toLocalDateTime(),
-						null,
+						result.getTimestamp("R_RESOLVED").toLocalDateTime(),
 						result.getDouble("R_AMOUNT"),
 						result.getString("R_DESCRIPTION"),
 						EmployeeRepositoryjbdc.getInstance().select(result.getInt("EMPLOYEE_ID")),
@@ -356,7 +356,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 				null, 
 				rs2, 
 				rt);
-		Reimbursement r2 = new Reimbursement(81,
+		Reimbursement r2 = new Reimbursement(61,
 				LocalDateTime.now(), 
 				LocalDateTime.now(), 
 				10.00, 
@@ -369,13 +369,13 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 		// Insert Test
 		//rr.getInstance().insert(r);
 
-		//Update Test
-				try {
-					rr.getInstance().update(r2);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//		//Update Test
+//				try {
+//					rr.getInstance().update(r2);
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 
 		// Select test
 //		try {
@@ -386,10 +386,10 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 //		}
 		
 		// Select all Pending SET <>TEST
-		//System.out.println(rr.getInstance().selectAllPending());
+		System.out.println(rr.getInstance().selectAllPending().size());
 		
 		// Select all Finalized SET<>
-		//System.out.println(rr.getInstance().selectAllFinalized());
+		System.out.println(rr.getInstance().selectAllFinalized().size());
 		
 		// Select Types
 		//System.out.println(rr.getInstance().selectTypes());
