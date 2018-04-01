@@ -111,7 +111,9 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 				return set;
 			}
 			if (request.getParameter("num").equals("3")){
-				return EmployeeServiceAlpha.getInstance().getAllEmployeesInformation(3);
+				Set<Employee> set = EmployeeServiceAlpha.getInstance().getAllEmployeesInformation(3);
+				logger.trace(set);
+				return set;
 			}	
 		}
 		return "404.html";

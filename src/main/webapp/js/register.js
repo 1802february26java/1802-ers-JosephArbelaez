@@ -1,4 +1,6 @@
 window.onload = () => {
+    document.getElementById("username").innerHTML = sessionStorage.getItem("employeeFirstName") + " " +sessionStorage.getItem("employeeLastName");
+
     //Register Event Listener
     document.getElementById("submit").addEventListener("click", () => {
         //Check passwords are the same

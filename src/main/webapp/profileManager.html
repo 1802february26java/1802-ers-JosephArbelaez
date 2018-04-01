@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
-    <meta charset="UTF-8">
+    <title>Profile</title>
+	<meta charset="UTF-8">
     <link rel="icon" href="images/customer.ico" />
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
        
@@ -12,6 +13,7 @@
     
     <!-- Boostrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <!-- Our CSS -->
     <link rel="stylesheet" href="css/our.css" />
          <style>
@@ -49,35 +51,35 @@
                     </div>
                 </div>
             </nav>
-    <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3>Register</h3>
-            </div>
-            <div class="form-group">
-                <input id="firstName" name="firstName" placeholder="First name" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input id="lastName" name="lastName" placeholder="Last name" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input id="username" name="username" placeholder="Username" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input id="password" name="password" placeholder="Password" type="password" class="form-control password-large" />
-            </div>
-            <div class="form-group">
-                <input id="repeatPassword" placeholder="Repeat password" type="password" class="form-control password-large" />
-            </div>
-         	<div class="form-group">
-                <input id="email" placeholder="Email" class="form-control" />
-            </div>
-            <div id="registrationMessage"></div>
-            <button id="submit" class="btn btn-md btn-success btn-block">Submit</button>
-            <div class="panel-footer">
-            </div>
-        </div>
-    </div>
-    <script src="js/register.js"></script>
-</body>
-</html>
+            <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>Profile</h3>
+                        </div>
+                        <div class="form-group">
+                            <p id="firstName"></p>
+                            <input id="firstNameText" name="firstNameText" placeholder="First Name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <p id="lastName"></p>
+                            <input id="lastNameText" name="lastNameText" placeholder="Last Name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <p id="userName"></p>
+                            <input id="usernameText" name="usernameText" placeholder="Username" class="form-control" />
+                        </div>
+                        <div>
+                            <p id="email"></p>
+                            <input id="emailText" name="emailText" placeholder="Email" class="form-control" />
+                        </div>
+                        <div id="loginMessage"></div>
+                        <button id="submit" class="btn btn-md btn-success btn-block">Submit Changes</button>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- JavaScript files -->
+                <script src="js/profileManager.js"></script>
+            </body>
+            </html>

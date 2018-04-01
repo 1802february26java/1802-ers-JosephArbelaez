@@ -296,7 +296,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 		//System.out.println(er.getInstance().select(num));
 		//Set<Employee> s = er.selectAll(3);
 		//System.out.println(s);
-		//System.out.println(s);
+		//System.out.println(s.size());
 
 		//Insert Employee Token Testing
 		//er.getInstance().insertEmployeeToken(new EmployeeToken(1, "I Love Anthony", LocalDateTime.now(), new Employee(41, "anthony", "pena", "a", "1", "penaa@gmail.com",new EmployeeRole(2,"MANAGER"))));
