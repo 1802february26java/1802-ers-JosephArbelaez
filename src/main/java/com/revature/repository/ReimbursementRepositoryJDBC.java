@@ -69,11 +69,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getResolved()));
 			statement.setDouble(++parameterIndex, reimbursement.getAmount());
 			statement.setString(++parameterIndex, reimbursement.getDescription());
-			if (reimbursement.getApprover() == null){
-				statement.setInt(++parameterIndex, (Integer) null);
-			} else {
-				statement.setInt(++parameterIndex, reimbursement.getApprover().getId());
-			}
+			statement.setInt(++parameterIndex, reimbursement.getApprover().getId());
 			statement.setInt(++parameterIndex,  reimbursement.getStatus().getId());
 			statement.setInt(++parameterIndex, reimbursement.getType().getId());
 			statement.setInt(++parameterIndex, reimbursement.getId());
@@ -140,7 +136,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 			ResultSet result = statement.executeQuery();
 			Set<Reimbursement> reimbursements = new HashSet<>();
-
+			logger.trace(reimbursements);
 			while (result.next()) {
 				reimbursements.add(new Reimbursement(
 						result.getInt("R_ID"),

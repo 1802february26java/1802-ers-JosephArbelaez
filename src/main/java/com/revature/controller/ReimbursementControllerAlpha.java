@@ -13,6 +13,8 @@ import com.revature.model.Employee;
 import com.revature.model.Reimbursement;
 import com.revature.model.ReimbursementStatus;
 import com.revature.model.ReimbursementType;
+import com.revature.repository.EmployeeRepositoryjbdc;
+import com.revature.service.EmployeeServiceAlpha;
 import com.revature.service.ReimbursementServiceAlpha;
 
 public class ReimbursementControllerAlpha implements ReimbursementController {
@@ -127,45 +129,57 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 					logger.trace("ReimbursementControllerAlpha.multipleRequests - Finalized Manager");
 					Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getAllResolvedRequests());
 					return reimbursements;
-			}
-			}
-		}
-			return new ClientMessage("Must add Manager code to ReimbursementControllerAlpha.multipleRequests.");
-		}
-
-		@Override
-		public Object finalizeRequest(HttpServletRequest request) {
-			logger.trace("ReimbursementControllerAlpha.finalizeRequest");
-			Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
-
-			if(loggedEmployee == null) {
-				logger.trace("Not signed in");
-				return "login.html";
-			}
-
-			Reimbursement reimbursement = new Reimbursement(Integer.parseInt(request.getParameter("reimbursementId")));
-			ReimbursementStatus status = new ReimbursementStatus(Integer.parseInt(request.getParameter("statusId")),request.getParameter("status"));
-			Reimbursement update = ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);
-			update.setStatus(status);
-			update.setResolved(LocalDateTime.now());
-
-			if(ReimbursementServiceAlpha.getInstance().finalizeRequest(update)){
-				return new ClientMessage("UPDATE SUCCESSFUL");
+				}
 			} else {
-				return new ClientMessage("SOMETHING WENT WRONG");
+				logger.trace("Getting requests for single employee.");
+				logger.trace(request.getParameter("eid"));
+				int empNum = Integer.parseInt(request.getParameter("eid"));
+				Employee employee = EmployeeRepositoryjbdc.getInstance().select(empNum);
+				
+				logger.trace("Acquired Employee");
+				logger.trace(employee);
+				Set<Reimbursement> reimbursements = new HashSet<Reimbursement>(ReimbursementServiceAlpha.getInstance().getUserPendingRequests(employee));
+				return reimbursements;
 			}
 		}
-		@Override
-		public Object getRequestTypes(HttpServletRequest request) {
-			logger.trace("ReimbursementControllerAlpha.getRequestTypes");
-			Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
-
-			if(loggedEmployee == null) {
-				logger.trace("Not signed in");
-				return "login.html";
-			}
-			Set<ReimbursementType> types = ReimbursementServiceAlpha.getInstance().getReimbursementTypes();
-			return types;
-		}
-
+		return new ClientMessage("Must add Manager code to ReimbursementControllerAlpha.multipleRequests.");
 	}
+
+	@Override
+	public Object finalizeRequest(HttpServletRequest request) {
+		logger.trace("ReimbursementControllerAlpha.finalizeRequest");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+
+		if(loggedEmployee == null) {
+			logger.trace("Not signed in");
+			return "login.html";
+		}
+		if (loggedEmployee.getEmployeeRole().getId() != 2) {
+			return "403.html";
+		}
+		Reimbursement reimbursement = new Reimbursement(Integer.parseInt(request.getParameter("id")));
+		ReimbursementStatus status = new ReimbursementStatus(Integer.parseInt(request.getParameter("status")),request.getParameter("status"));
+		Reimbursement update = ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);
+		update.setStatus(status);
+		update.setResolved(LocalDateTime.now());
+		update.setApprover(loggedEmployee);
+		if(ReimbursementServiceAlpha.getInstance().finalizeRequest(update)){
+			return new ClientMessage("UPDATE SUCCESSFUL");
+		} else {
+			return new ClientMessage("SOMETHING WENT WRONG");
+		}
+	}
+	@Override
+	public Object getRequestTypes(HttpServletRequest request) {
+		logger.trace("ReimbursementControllerAlpha.getRequestTypes");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+
+		if(loggedEmployee == null) {
+			logger.trace("Not signed in");
+			return "login.html";
+		}
+		Set<ReimbursementType> types = ReimbursementServiceAlpha.getInstance().getReimbursementTypes();
+		return types;
+	}
+
+}

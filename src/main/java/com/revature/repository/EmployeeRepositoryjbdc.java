@@ -93,7 +93,7 @@ public class EmployeeRepositoryjbdc implements EmployeeRepository{
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(++parameterIndex, empID);
 			ResultSet result = statement.executeQuery();
-
+			logger.trace(result);
 			if(result.next())
 				return new Employee(
 						result.getInt("U_ID"),
