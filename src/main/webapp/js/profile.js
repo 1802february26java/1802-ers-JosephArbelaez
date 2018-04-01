@@ -25,6 +25,11 @@ document.getElementById("submit").addEventListener("click", () => {
     xhr.open("POST", `profileUpdate.do?firstname=${firstname}&lastname=${lastname}&username=${username}&email=${email}`)
     xhr.send();
 
+    document.getElementById("loginMessage").innerHTML = '<span class="label label-success label-center">Profile Change Successful</span>';
+    sessionStorage.setItem("employeeFirstName", document.getElementById("firstNameText").value);
+    sessionStorage.setItem("employeeLastName", document.getElementById("lastNameText").value);
+    sessionStorage.setItem("employeeUsername", document.getElementById("usernameText").value);
+    sessionStorage.setItem("email",document.getElementById("emailText").value);
     setTimeout(() =>{ window.location.replace("profile.html");}, 2000);
 
 })

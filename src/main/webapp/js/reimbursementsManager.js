@@ -139,15 +139,15 @@ function displayPendingReimbursements(data) {
             
             var accept = document.createElement("input");
             accept.type = "button";
-            accept.className = "btn btn-success approve-button";
-            accept.value = "Accept";
+            accept.className = "btn button approve-button";
+            accept.value = "A";
             accept.addEventListener("click", () => {
                 update(3, tablerow.id);
             });
             var deny = document.createElement("input");
             deny.type = "button";
-            deny.className = "btn btn-danger approve-button";
-            deny.value = "Deny";
+            deny.className = "btn button approve-button";
+            deny.value = "D";
             deny.addEventListener("click", () => {
                 update(2, tablerow.id);
             });
@@ -194,6 +194,7 @@ function update(status, id) {
     };
     xhr.open("POST", `update.do?id=${id}&status=${status}`)
     xhr.send();
+    setTimeout(() =>{ window.location.replace("viewAllReimbursementsManager.html");}, 1000);
 }
 
 function displayFinalizedReimbursements(data) {

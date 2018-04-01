@@ -14,7 +14,7 @@ window.onload = () => {
         //Get the rest fields
         let firstName = document.getElementById("firstName").value;
         let lastName = document.getElementById("lastName").value;
-        let username = document.getElementById("username").value;
+        let username = document.getElementById("username1").value;
         let email = document.getElementById("email").value;
         //AJAX Logic
         let xhr = new XMLHttpRequest();
@@ -43,14 +43,13 @@ function register(data) {
     //If message is a member of the JSON, something went wrong
     if(data.message === "REGISTRATION SUCCESSFUL") {
         document.getElementById("registrationMessage").innerHTML = '<span class="label label-success label-center">Registration successful.</span>';
-        setTimeout(() =>{ window.location.replace("login.do");}, 2000);
+        setTimeout(() =>{ window.location.replace("managerHome.do");}, 2000);
     }
     if(data.message === "USERNAME IS TAKEN") {
         document.getElementById("registrationMessage").innerHTML = '<span class="label label-danger label-center">Username has already been used. Please select another.</span>';
     }
     //Something went wrong
-    else {
+    if(data.message === "SOMETHING WENT WRONG") {
         document.getElementById("registrationMessage").innerHTML = '<span class="label label-danger label-center">Something went wrong.</span>';
-        
     }
 }
