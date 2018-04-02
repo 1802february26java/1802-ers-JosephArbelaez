@@ -29,7 +29,7 @@ document.getElementById("submit").addEventListener("click", () => {
     sessionStorage.setItem("employeeLastName", document.getElementById("lastNameText").value);
     sessionStorage.setItem("employeeUsername", document.getElementById("usernameText").value);
     sessionStorage.setItem("email",document.getElementById("emailText").value);
-    setTimeout(() =>{ window.location.replace("profileManager.html");}, 2000);
+    setTimeout(() =>{ window.location.replace("profileManager.do");}, 2000);
 
 })
 }

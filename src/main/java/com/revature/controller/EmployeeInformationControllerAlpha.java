@@ -107,7 +107,7 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 		if (request.getMethod().equals("GET")){
 			return "login.html";
 		}
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("Employee");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
 		
 		logger.trace(loggedEmployee);
 		/* If customer is not logged in */

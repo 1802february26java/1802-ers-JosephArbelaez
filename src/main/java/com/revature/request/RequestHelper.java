@@ -71,6 +71,10 @@ public class RequestHelper {
 			return "viewReimbursements.html";
 		case "/ERS/profile.do":
 			return "profile.html";
+		case "/ERS/profileManager.do":
+			return "profileManager.html";
+		case "/ERS/listEmployeeManager.do":
+			return "listEmployeeManager.html";
 		default:
 			return null;
 		}
