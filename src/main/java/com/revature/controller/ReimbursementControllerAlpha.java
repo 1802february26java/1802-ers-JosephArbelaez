@@ -41,7 +41,12 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 		}
 
 		if (loggedEmployee.getEmployeeRole().getId() == 2){
-			return "managerHome.html";
+			return "403Manager.html";
+		}
+		if (request.getMethod().equals("GET")){
+			logger.trace("EmployeeInformationController.registerEmployee GET");
+
+			return "newRequestEmployee.html";
 		}
 
 		ReimbursementStatus status = new ReimbursementStatus(1,"PENDING");

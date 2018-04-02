@@ -30,7 +30,7 @@ document.getElementById("submit").addEventListener("click", () => {
     sessionStorage.setItem("employeeLastName", document.getElementById("lastNameText").value);
     sessionStorage.setItem("employeeUsername", document.getElementById("usernameText").value);
     sessionStorage.setItem("email",document.getElementById("emailText").value);
-    setTimeout(() =>{ window.location.replace("profile.html");}, 2000);
+    setTimeout(() =>{ window.location.replace("profile.do");}, 2000);
 
 })
 }
@@ -38,7 +38,7 @@ document.getElementById("submit").addEventListener("click", () => {
 function submit(data) {
     if(data.message === "REGISTRATION SUCCESSFUL") {
         document.getElementById("loginMessage").innerHTML = '<span class="label label-danger label-center">Profile Change Successfule</span>';
-        setTimeout(() =>{ window.location.replace("profile.html");}, 2000);
+        setTimeout(() =>{ window.location.replace("profile.do");}, 2000);
     }
     //Something went wrong
     else {

@@ -42,7 +42,7 @@ public class LoginControllerAlpha implements LoginController {
 
 	@Override
 	public String logout(HttpServletRequest request) {
-		request.getSession().invalidate();
+		request.getSession().setAttribute("loggedCustomer", null);
 		return "login.html";
 	}
 

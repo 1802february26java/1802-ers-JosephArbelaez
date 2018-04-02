@@ -24,10 +24,22 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 
 	@Override
 	public Object registerEmployee(HttpServletRequest request) {
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+		logger.trace(loggedEmployee.getEmployeeRole().getId());
+
+		if (loggedEmployee.getEmployeeRole().getId() == 1){
+			logger.trace("Within return to 403.");
+			return "403Employee.html";
+		}
+		
 		if (request.getMethod().equals("GET")){
 			logger.trace("EmployeeInformationController.registerEmployee GET");
+
 			return "register.html";
 		}
+		
+
+
 		logger.trace("EmployeeInformationController.registerEmployee POST");
 
 		Employee employee = new Employee(0, request.getParameter("firstName"),
@@ -95,7 +107,7 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 		if (request.getMethod().equals("GET")){
 			return "login.html";
 		}
-		Employee loggedEmployee = (Employee) request.getSession().getAttribute("loggedEmployee");
+		Employee loggedEmployee = (Employee) request.getSession().getAttribute("Employee");
 		
 		logger.trace(loggedEmployee);
 		/* If customer is not logged in */
